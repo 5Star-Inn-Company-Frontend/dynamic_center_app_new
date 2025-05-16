@@ -11,7 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:package_info/package_info.dart';
+// import 'package:package_info/package_info.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'auth/login.dart';
@@ -54,14 +54,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   getsharepref() async {
     if (deviceallow.allow()) {
-      if (Platform.isAndroid || Platform.isIOS) {
-        PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-          appName = packageInfo.appName;
-          packageName = packageInfo.packageName;
-          appversion = packageInfo.version;
-          buildNumber = packageInfo.buildNumber;
-        });
-      }
+      // if (Platform.isAndroid || Platform.isIOS) {
+      //   PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      //     appName = packageInfo.appName;
+      //     packageName = packageInfo.packageName;
+      //     appversion = packageInfo.version;
+      //     buildNumber = packageInfo.buildNumber;
+      //   });
+      // }
       initPlatformState();
       Firebase.initializeApp();
       FirebaseMessaging.instance

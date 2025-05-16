@@ -18,7 +18,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:local_auth/local_auth.dart';
@@ -224,49 +224,49 @@ class _LoginState extends State<Login> {
     });
   }
 
-  final plugin = FacebookLogin(debug: true);
-  Future<void> _facebooklogin() async {
-    await plugin.logIn(permissions: [
-      FacebookPermission.publicProfile,
-      FacebookPermission.email,
-    ]);
-    await _updateLoginInfo();
-  }
+  // final plugin = FacebookLogin(debug: true);
+  // Future<void> _facebooklogin() async {
+  //   await plugin.logIn(permissions: [
+  //     FacebookPermission.publicProfile,
+  //     FacebookPermission.email,
+  //   ]);
+  //   await _updateLoginInfo();
+  // }
 
-  Future<void> _onPressedLogOutButton() async {
-    await plugin.logOut();
-    await _updateLoginInfo();
-  }
+  // Future<void> _onPressedLogOutButton() async {
+  //   await plugin.logOut();
+  //   await _updateLoginInfo();
+  // }
 
-  Future<void> _updateLoginInfo() async {
-    final token = await plugin.accessToken;
-    FacebookUserProfile? profile;
-    String? email;
-    String? imageUrl;
-    String? name;
+  // Future<void> _updateLoginInfo() async {
+  //   final token = await plugin.accessToken;
+  //   FacebookUserProfile? profile;
+  //   String? email;
+  //   String? imageUrl;
+  //   String? name;
 
-    if (token != null) {
-      profile = await plugin.getUserProfile();
-      if (token.permissions.contains(FacebookPermission.email.name)) {
-        email = await plugin.getUserEmail();
-      }
-      imageUrl = await plugin.getProfileImageUrl(width: 100);
-      // _sociallogin(profile!.name, token.token, imageUrl, email, context);
-      await prefs.setBool('facebooklogin', true);
-      setState(() {
-        // userProfile = profile!;
-        _isLoggedIn = true;
-      });
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return LandingPage();
-          },
-        ),
-      );
-    }
-  }
+  //   if (token != null) {
+  //     profile = await plugin.getUserProfile();
+  //     if (token.permissions.contains(FacebookPermission.email.name)) {
+  //       email = await plugin.getUserEmail();
+  //     }
+  //     imageUrl = await plugin.getProfileImageUrl(width: 100);
+  //     // _sociallogin(profile!.name, token.token, imageUrl, email, context);
+  //     await prefs.setBool('facebooklogin', true);
+  //     setState(() {
+  //       // userProfile = profile!;
+  //       _isLoggedIn = true;
+  //     });
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) {
+  //           return LandingPage();
+  //         },
+  //       ),
+  //     );
+  //   }
+  // }
 
   //Example code of how to sign in with Google. this working fine with firebase
   void _signInWithGoogle() async {
@@ -512,12 +512,12 @@ class _LoginState extends State<Login> {
           },
         ),
         SizedBox(width: size.width * 0.03),
-        LoginoptionButton(
-          images: "assets/images/Facebook.png",
-          press: () {
-            _facebooklogin();
-          },
-        ),
+        // LoginoptionButton(
+        //   images: "assets/images/Facebook.png",
+        //   press: () {
+        //     _facebooklogin();
+        //   },
+        // ),
       ],
     );
   }

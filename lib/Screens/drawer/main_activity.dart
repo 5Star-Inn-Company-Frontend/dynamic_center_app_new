@@ -13,7 +13,7 @@ import 'package:dynamic_center/Screens/transfer.dart';
 import 'package:dynamic_center/general/component/Savedetails.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
@@ -54,12 +54,12 @@ class _MainActivityState extends State<MainActivity>
 
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  final plugin = FacebookLogin(debug: true);
+  // final plugin = FacebookLogin(debug: true);
 
-  Future<void> _onPressedLogOutButton() async {
-    await plugin.logOut();
-    // await _updateLoginInfo();
-  }
+  // Future<void> _onPressedLogOutButton() async {
+  //   await plugin.logOut();
+  //   // await _updateLoginInfo();
+  // }
 
   // @override
   // void initState() {
@@ -180,9 +180,10 @@ class _MainActivityState extends State<MainActivity>
         if (googlelogin) {
           await _googleSignIn.signOut();
           print("User Sign Out");
-        } else if (facebooklogin) {
-          plugin.logOut();
-        }
+        } 
+        // else if (facebooklogin) {
+        //   plugin.logOut();
+        // }
         break;
 
       default:
