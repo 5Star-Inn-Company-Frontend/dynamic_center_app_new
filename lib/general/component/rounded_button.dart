@@ -1,40 +1,38 @@
-import 'package:dynamic_center/general/constant.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
   final Function press;
   const RoundedButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.press,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      // margin: EdgeInsets.symmetric(vertical: 10),
-      // width: size.width * 0.8,
-      // constraints: BoxConstraints.expand(),
-      width: size.width * 0.4,
-      height: size.height * 0.1,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/Button.png"),
-              fit: BoxFit.cover)),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(29),
-        child: TextButton(
-          // padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-          onPressed: () {
-            press();
-          },
+    // Size size = MediaQuery.of(context).size;
+
+    return GestureDetector(
+      onTap: () {
+        press();
+      },
+      child: Container(
+        width: double.infinity,
+        height: 40.h,
+        decoration: BoxDecoration(
+          color: Color(primarycolour),
+          borderRadius: BorderRadius.circular(12.r),
+          // image: DecorationImage(
+          //   image: AssetImage("assets/images/Button.png"),
+          //   fit: BoxFit.cover)
+        ),
+        child: Center(
           child: Text(
-            text,
-            style: TextStyle(color: Color(primarycolour)),
-          ),
+              text,
+              style: GoogleFonts.poppins(color: Colors.white, fontSize: 16.sp, fontWeight: FontWeight.bold),
+            ),
         ),
       ),
     );

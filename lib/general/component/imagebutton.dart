@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class Imagebutton extends StatelessWidget {
   final String text;
@@ -30,7 +31,7 @@ class Imagebutton extends StatelessWidget {
             ),
             Text(
               text,
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                   fontWeight: FontWeight.normal,
                   fontSize: 15,
                   color: textColor),

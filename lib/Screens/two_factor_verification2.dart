@@ -8,6 +8,7 @@ import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:dynamic_center/general/component/rounded_input_field.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 
 class TwoFactorVerification2 extends StatefulWidget {
@@ -49,7 +50,7 @@ class _TwoFactorVerification2State extends State<TwoFactorVerification2> {
         elevation: 0.0,
         title: Text(
           "Two-Factor Verification",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         leading: Backnavigation(),
@@ -68,7 +69,7 @@ class _TwoFactorVerification2State extends State<TwoFactorVerification2> {
                   margin: EdgeInsets.symmetric(horizontal: 30),
                   child: Text(
                     "Please enter the confirmation code from your auth app",
-                    style: TextStyle(fontSize: 15),
+                    style: GoogleFonts.poppins(fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -97,7 +98,7 @@ class _TwoFactorVerification2State extends State<TwoFactorVerification2> {
                           },
                           child: Text(
                             'Paste Code',
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                                 color: Color(primarycolour),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 19),

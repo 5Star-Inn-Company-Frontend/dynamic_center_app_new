@@ -6,6 +6,7 @@ import 'package:dynamic_center/general/component/backnavigation.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class PreviewScreen extends StatefulWidget {
   final String imgPath;
@@ -25,7 +26,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
           elevation: 0.0,
           title: Text(
             "Document Verification",
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
           ),
           leading: Backnavigation(),
@@ -66,7 +67,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                           },
                           child: Text(
                             "Cancel",
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,
                                 color: Colors.white),
@@ -102,7 +103,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                           },
                           child: Text(
                             "Confirm",
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,
                                 color: Colors.white),

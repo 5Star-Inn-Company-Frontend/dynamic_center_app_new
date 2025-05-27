@@ -3,6 +3,7 @@
 // import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 // import 'package:flutter/foundation.dart';
 // import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 //
 // import 'detector_painters.dart';
 //
@@ -140,7 +141,7 @@
 //           ? const Center(
 //               child: Text(
 //                 'Initializing Camera...',
-//                 style: TextStyle(
+//                 style: GoogleFonts.poppins(
 //                   color: Colors.green,
 //                   fontSize: 30.0,
 //                 ),

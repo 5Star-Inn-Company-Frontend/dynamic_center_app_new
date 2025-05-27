@@ -6,6 +6,7 @@ import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/component/roundedmenu.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class Security extends StatefulWidget {
   Security({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _SecurityState extends State<Security> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Security",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         backgroundColor: Color(scafoldcolour),
         elevation: 0.0,
@@ -56,7 +57,7 @@ class _SecurityState extends State<Security> {
                           SizedBox(height: 30,),
                           Roundedmenu(
                             text: Text("Change Password",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                             ),
                             press: (){
                               Navigator.push(
@@ -72,7 +73,7 @@ class _SecurityState extends State<Security> {
                           SizedBox(height: 10),
                           Roundedmenu(
                             text: Text("Change PIN",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                             ),
                             press: (){
                               // Navigator.push(
@@ -110,7 +111,7 @@ class _SecurityState extends State<Security> {
                                   child: Row(
                                       children:[
                                         Text("Two-Factor Verification",
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                                         ),
                                         Spacer(),
                                         Switch(

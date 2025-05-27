@@ -14,6 +14,7 @@ import 'package:dynamic_center/general/component/imagebutton.dart';
 import 'package:dynamic_center/general/component/loadingdialog.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:http/http.dart' as http;
 
 import 'buyairtime.dart';
@@ -234,7 +235,7 @@ class _LandingPageState extends State<LandingPage> {
           margin: EdgeInsets.only(left: 20),
           child: Text(
             "Latest transactions",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 15),
           ),
         ),
         done
@@ -297,7 +298,7 @@ class _LandingPageState extends State<LandingPage> {
                                                         left: 5),
                                                     child: Text(
                                                       nDataList.amount,
-                                                      style: TextStyle(
+                                                      style: GoogleFonts.poppins(
                                                           fontSize: 15.0,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -306,7 +307,7 @@ class _LandingPageState extends State<LandingPage> {
                                                 ),
                                                 Text(
                                                   nDataList.date,
-                                                  style: TextStyle(
+                                                  style: GoogleFonts.poppins(
                                                       color: Colors.grey),
                                                 ),
                                               ],
@@ -326,14 +327,14 @@ class _LandingPageState extends State<LandingPage> {
                                                         left: 5),
                                                     child: Text(
                                                       nDataList.name,
-                                                      style: TextStyle(
+                                                      style: GoogleFonts.poppins(
                                                           fontSize: 15.0),
                                                     ),
                                                   ),
                                                 )),
                                                 Text(
                                                   nDataList.code,
-                                                  style: TextStyle(
+                                                  style: GoogleFonts.poppins(
                                                       color: Color(0xffDF5060)),
                                                 ),
                                               ],

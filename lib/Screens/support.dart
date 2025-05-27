@@ -4,6 +4,7 @@ import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/component/plainmenu.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class Support extends StatefulWidget {
   Support({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _SupportState extends State<Support> {
         backgroundColor: Color(scafoldcolour),
         elevation: 0.0,
         title: Text("Support",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         leading: Backnavigation(),
         centerTitle: true,
@@ -47,7 +48,7 @@ class _SupportState extends State<Support> {
                     children: <Widget>[
                       Plainmenu(
                         text: Text("Frequently asked questions",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                         ),
                         press: (){
                             Navigator.push(
@@ -62,7 +63,7 @@ class _SupportState extends State<Support> {
                       ),
                       Plainmenu(
                         text: Text("Your support tickets",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                         ),
                         press: (){
                           //   Navigator.push(
@@ -77,7 +78,7 @@ class _SupportState extends State<Support> {
                       ),
                       Plainmenu(
                         text: Text("Contact us",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                         ),
                         press: (){
                           //   Navigator.push(

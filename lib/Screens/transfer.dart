@@ -13,6 +13,7 @@ import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:dynamic_center/general/component/rounded_input_field.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
@@ -242,7 +243,7 @@ class _TransferState extends State<Transfer> {
                     Text(
                       "Transfer",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                          GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),
                       textAlign: TextAlign.left,
                     ),
                     Container(

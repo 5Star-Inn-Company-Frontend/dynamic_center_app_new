@@ -1,6 +1,8 @@
+import 'package:dynamic_center/constant/constant.dart' as constant;
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
-import 'constant.dart';
+// import 'constant.dart';
 
 class DoubleButton extends StatelessWidget {
   final Function? press;
@@ -14,8 +16,8 @@ class DoubleButton extends StatelessWidget {
       this.press,
       this.name,
       this.width = 200,
-      this.textcolor = primarycolour,
-      this.loaderwidget = loadingWidget,
+      this.textcolor = constant.primarycolour,
+      this.loaderwidget = constant.loadingWidget,
       this.buttoncolor = Colors.white,
       this.isloading = false,
       this.secondbuttoncolor = Colors.white})
@@ -64,7 +66,7 @@ class DoubleButton extends StatelessWidget {
                     ? loaderwidget
                     : Text(
                         name.toString(),
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                             color: textcolor,
                             fontWeight: FontWeight.w700,
                             fontSize: 15.0),

@@ -6,6 +6,7 @@
 // import 'package:file_picker/file_picker.dart';
 // import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 // import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 //
 // class DetailScreen extends StatefulWidget {
 //   final String imagePath;
@@ -167,7 +168,7 @@
 //                             padding: const EdgeInsets.only(bottom: 8.0),
 //                             child: Text(
 //                               "Identified card details",
-//                               style: TextStyle(
+//                               style: GoogleFonts.poppins(
 //                                 fontSize: 20,
 //                                 fontWeight: FontWeight.bold,
 //                               ),

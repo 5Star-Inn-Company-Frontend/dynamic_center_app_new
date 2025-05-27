@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class CircularImage extends StatelessWidget {
   final double _width, _height;

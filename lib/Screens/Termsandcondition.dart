@@ -9,6 +9,7 @@ import 'package:dynamic_center/general/component/rounded_input_field.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:http/http.dart' as http;
 
 class Termsandcondition extends StatefulWidget {
@@ -26,7 +27,7 @@ class _TermsandconditionState extends State<Termsandcondition> {
     return Scaffold(
       appBar: AppBar(
         title: Text("TERMS & CONDITION",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         backgroundColor: Color(scafoldcolour),
         elevation: 0.0,

@@ -8,6 +8,7 @@ import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:dynamic_center/general/component/rounded_input_field.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 
 class VerifyPhoneNumber extends StatefulWidget {
@@ -77,7 +78,7 @@ class _VerifyPhoneNumberState extends State<VerifyPhoneNumber> {
         elevation: 0.0,
         title: Text(
           "Verify Phone Number",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         leading: Backnavigation(),

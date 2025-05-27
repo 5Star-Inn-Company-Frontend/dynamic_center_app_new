@@ -1,6 +1,7 @@
 import 'dart:ui' show lerpDouble;
 
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class WindowPainter extends CustomPainter {
   WindowPainter({

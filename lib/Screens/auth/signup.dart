@@ -1,26 +1,14 @@
-import 'dart:convert';
+import 'dart:developer';
 
-import 'package:dynamic_center/general/SizeConfig.dart';
-import 'package:dynamic_center/general/component/already_have_an_account_acheck.dart';
-import 'package:dynamic_center/general/component/cardlayout.dart';
-import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
-import 'package:dynamic_center/general/component/loadingdialog.dart';
-import 'package:dynamic_center/general/component/rounded_button.dart';
-import 'package:dynamic_center/general/component/rounded_input_field.dart';
-import 'package:dynamic_center/general/component/rounded_password_field.dart';
-import 'package:dynamic_center/general/constant.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:http/http.dart' as http;
 
-import 'login.dart';
-
 class Signup extends StatefulWidget {
-  Signup({Key? key}) : super(key: key);
+  const Signup({super.key});
 
   @override
-  _SignupState createState() => _SignupState();
+  State<Signup> createState() => _SignupState();
 }
 
 class _SignupState extends State<Signup> {
@@ -30,13 +18,13 @@ class _SignupState extends State<Signup> {
   TextEditingController lastnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController =
-      TextEditingController(); // Option 2
+  TextEditingController passwordController = TextEditingController(); // Option 2
   String _selectedcompanyid = ""; // Option 2
   List<Source> _region = [];
   Source? _currentUser;
   String dialogtitle = "Signup Error";
   var cmddetails;
+
   @override
   void initState() {
     super.initState();
@@ -95,7 +83,7 @@ class _SignupState extends State<Signup> {
         );
         showDialog(context: context, builder: (BuildContext context) => dialog);
       }
-    } catch (Exception) {
+    } on Exception {
       Navigator.of(context).pop();
       var dialog = CustomAlertDialog(
         title: dialogtitle,
@@ -127,7 +115,7 @@ class _SignupState extends State<Signup> {
   }
 
   void _login(
-      first_name, last_name, email, password, phoneno, company_id) async {
+      firstName, lastName, email, password, phoneno, companyId) async {
     if (_formKey.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
@@ -136,17 +124,17 @@ class _SignupState extends State<Signup> {
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }
       try {
-        var json_body = {
-          'first_name': first_name,
-          'last_name': last_name,
+        var jsonBody = {
+          'first_name': firstName,
+          'last_name': lastName,
           'email': email,
           'password': password,
           'phoneno': phoneno,
-          'company_id': company_id,
+          'company_id': companyId,
           'referral': ''
         };
         http.Response response =
-            await http.post(parseUrl("signup"), body: json_body);
+            await http.post(parseUrl("signup"), body: jsonBody);
 
         if (response.statusCode == 200) {
           String data = response.body;
@@ -197,7 +185,7 @@ class _SignupState extends State<Signup> {
           showDialog(
               context: context, builder: (BuildContext context) => dialog);
         }
-      } catch (Exception) {
+      } on Exception {
         Navigator.of(context).pop();
         var dialog = CustomAlertDialog(
             title: dialogtitle,
@@ -216,7 +204,7 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(size.height);
+    log(size.height.toString());
     // if (size.height >= 988) {
     //   cardheight = size.height;
     // }if (size.height >= 860) {
@@ -234,21 +222,23 @@ class _SignupState extends State<Signup> {
       body: Center(
         child: SingleChildScrollView(
             physics: ClampingScrollPhysics(),
-            child: Container(
+            child: SizedBox(
               height: cardheight(context: context, needed: true),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: size.height * 0.07),
+                    Gap(40.h),
                     Text(
                       "Create Account",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                          GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26),
                     ),
-                    SizedBox(height: size.height * 0.03),
+                    
+                    Gap(20.h),
                     Image(
                       image: AssetImage("assets/images/office.png"),
                     ),
+
                     Expanded(
                       child: Cardlayout(
                         child: Container(
@@ -261,27 +251,23 @@ class _SignupState extends State<Signup> {
                               // crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 companylist(),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                                Gap(15.h),
+
                                 firstname(),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                                Gap(15.h),
+
                                 lastname(),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                                Gap(15.h),
+
                                 phoneno(),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                                Gap(15.h),
+
                                 email(),
-                                SizedBox(
-                                  height: 20,
-                                ),
+                                Gap(15.h),
+
                                 password(),
-                                SizedBox(height: size.height * 0.05),
+                                Gap(25.h),
+
                                 RoundedButton(
                                   text: "Create Account",
                                   press: () {
@@ -294,7 +280,8 @@ class _SignupState extends State<Signup> {
                                         _selectedcompanyid);
                                   },
                                 ),
-                                SizedBox(height: size.height * 0.03),
+                                Gap(20.h),
+                                
                                 AlreadyHaveAnAccountCheck(
                                   login: false,
                                   press: () {
@@ -308,34 +295,43 @@ class _SignupState extends State<Signup> {
                                     );
                                   },
                                 ),
-                                SizedBox(height: size.height * 0.03),
+                                Gap(20.h),
                               ],
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ]),
-            )),
+                  ]
+                ),
+            )
+          ),
       ),
     );
   }
 
   Widget companylist() {
     return DropdownButtonFormField<Source>(
+      icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+      value: _currentUser,
+      hint: Text('Select Company', style: GoogleFonts.poppins(fontSize: 12.sp)),
+      validator: (value) => value == null ? 'field required' : null,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+      ),
       items: _region.map((user) {
         return DropdownMenuItem<Source>(
-          child: Text(user.name),
           value: user,
+          child: Text(user.name, style: GoogleFonts.poppins(fontSize: 12.sp)),
         );
       }).toList(),
-      value: _currentUser,
-      hint: Text('Select Company'),
       onChanged: (Source? salutation) => setState(() {
         _currentUser = salutation;
         _selectedcompanyid = _currentUser!.id.toString();
       }),
-      validator: (value) => value == null ? 'field required' : null,
+      
     );
   }
 

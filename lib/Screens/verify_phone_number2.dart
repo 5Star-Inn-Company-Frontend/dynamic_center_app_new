@@ -7,6 +7,7 @@ import 'package:dynamic_center/general/component/backnavigation.dart';
 import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 import 'package:lpinyin/lpinyin.dart';
 
@@ -67,7 +68,7 @@ class _VerifyPhoneNumber2State extends State<VerifyPhoneNumber2> {
         elevation: 0.0,
         title: Text(
           "Choose Country Code",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         leading: Backnavigation(),
@@ -114,8 +115,8 @@ class _VerifyPhoneNumber2State extends State<VerifyPhoneNumber2> {
                         indexBarOptions: IndexBarOptions(
                           needRebuild: true,
                           ignoreDragCancel: true,
-                          // downTextStyle: TextStyle(fontSize: 12, color: Colors.white),
-                          selectTextStyle: TextStyle(
+                          // downGoogleFonts.poppins: GoogleFonts.poppins(fontSize: 12, color: Colors.white),
+                          selectTextStyle: GoogleFonts.poppins(
                               fontSize: 12,
                               color: Color(0xFF333333),
                               fontWeight: FontWeight.w500),

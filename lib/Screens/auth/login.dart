@@ -1,35 +1,14 @@
-import 'dart:convert';
-
-import 'package:dynamic_center/Screens/auth/signup.dart';
-import 'package:dynamic_center/general/SizeConfig.dart';
-import 'package:dynamic_center/general/component/Savedetails.dart';
-import 'package:dynamic_center/general/component/Snacbar.dart';
-import 'package:dynamic_center/general/component/already_have_an_account_acheck.dart';
-import 'package:dynamic_center/general/component/cardlayout.dart';
-import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
-import 'package:dynamic_center/general/component/loadingdialog.dart';
-import 'package:dynamic_center/general/component/loginoption_button.dart';
-import 'package:dynamic_center/general/component/rounded_button.dart';
-import 'package:dynamic_center/general/component/rounded_input_field.dart';
-import 'package:dynamic_center/general/component/rounded_password_field.dart';
-import 'package:dynamic_center/general/constant.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:local_auth/local_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../landing_page.dart';
-import 'forgetpassword.dart';
 
 class Login extends StatefulWidget {
+  const Login({super.key});
+
   @override
-  _LoginState createState() => _LoginState();
+  State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
@@ -40,11 +19,14 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   String dialogtitle = "Login Error";
   late SharedPreferences prefs;
-  final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   // final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
+    SharedPreferences.getInstance().then((instance) {
+      prefs = instance;
+    });
     // Firebase.initializeApp();
   }
 
@@ -65,13 +47,13 @@ class _LoginState extends State<Login> {
     //   headers.addAll({"Authorization" : "Bearer "+token});
     // }
     try {
-      var json_body = {
+      var jsonBody = {
         'username': email,
         'password': password,
         'device_name': device1
       };
       http.Response response =
-          await http.post(parseUrl("login"), body: json_body);
+          await http.post(parseUrl("login"), body: jsonBody);
 
       if (response.statusCode == 200) {
         Navigator.of(context).pop();
@@ -166,7 +148,7 @@ class _LoginState extends State<Login> {
       } catch (e) {}
 
       if (availableBiometrics.isNotEmpty) {
-        availableBiometrics.forEach((ab) {});
+        for (var ab in availableBiometrics) {}
       } else {}
 
       bool authenticated = false;
@@ -188,7 +170,7 @@ class _LoginState extends State<Login> {
     }
   }
 
-  bool _isLoggedIn = false;
+  // bool _isLoggedIn = false;
   late Map userProfile;
 
   //Example code of how to sign in with Google. this working fine without firebase
@@ -244,7 +226,6 @@ class _LoginState extends State<Login> {
   //   String? email;
   //   String? imageUrl;
   //   String? name;
-
   //   if (token != null) {
   //     profile = await plugin.getUserProfile();
   //     if (token.permissions.contains(FacebookPermission.email.name)) {
@@ -317,32 +298,39 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(size.height);
+
     return Scaffold(
       key: _scaffoldKey,
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
-        child: Container(
+        child: SizedBox(
           height: cardheight(context: context, needed: true),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 50),
+                Gap(50.h),
                 Text(
                   "Welcome",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26),
                 ),
-                SizedBox(height: size.height * 0.03),
-                Image(
-                  image: AssetImage("assets/images/login.png"),
+
+                Gap(20.h),
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20.r),
+                    bottomRight: Radius.circular(20.r),
+                  ),
+                  child: Image(
+                    image: AssetImage("assets/images/login.png"),
+                  ),
                 ),
-                // Spacer(),
+
                 Expanded(
                   child: Cardlayout(
                     child: Container(
                       width: size.width,
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.only(top: 30.h, right: 16.w, left: 16.w),
                       child: Form(
                         key: _formKey,
                         child: Column(
@@ -350,37 +338,41 @@ class _LoginState extends State<Login> {
                           // mainAxisAlignment: MainAxisAlignment.center,
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Email(),
-                            SizedBox(
-                              height: 20,
-                            ),
+                            email(),
+                            Gap(15.h),
+
                             password(),
-                            SizedBox(height: size.height * 0.03),
-                            Container(
-                              alignment: Alignment.topRight,
-                              width: size.width,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        // return JsonApiDropdown();
-                                        return Forgetpassword();
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "Forgot your password?",
-                                  style: TextStyle(
-                                      color: Color(primarycolour),
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.right,
+                            Gap(10.h),
+                            
+                            // forgot password
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          // return JsonApiDropdown();
+                                          return Forgetpassword();
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    "Forgot your password?",
+                                    style: GoogleFonts.poppins(
+                                        color: Color(primarycolour),
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.right,
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                            SizedBox(height: size.height * 0.03),
+                            Gap(30.h),
+
+                            // login button
                             RoundedButton(
                               text: "Login",
                               press: () {
@@ -390,15 +382,19 @@ class _LoginState extends State<Login> {
                                 }
                               },
                             ),
-                            SizedBox(height: size.height * 0.03),
+                            Gap(20.h),
+
                             Text(
                               "Connect With:",
-                              style: TextStyle(color: Colors.red),
+                              style: GoogleFonts.poppins(color: Colors.red),
                               textAlign: TextAlign.right,
                             ),
-                            SizedBox(height: size.height * 0.03),
+                            Gap(8.h),
+
                             loginoption(size),
-                            SizedBox(height: size.height * 0.03),
+                            Gap(20.h),
+
+                            // already have an account
                             AlreadyHaveAnAccountCheck(
                               press: () {
                                 Navigator.push(
@@ -424,12 +420,13 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget Email() {
+  Widget email() {
     return RoundedInputField(
+      keyboardType: TextInputType.emailAddress,
       inputFormatters: [
         FilteringTextInputFormatter.deny(RegExp("[ ]")),
       ],
-      labelText: "Your Email/Phone number",
+      labelText: "Email Address",
       onChanged: (value) {
         emailController.text = value;
       },
@@ -439,16 +436,16 @@ class _LoginState extends State<Login> {
         } else if (value.contains('@')) {
           if (!EmailValidator.validate(value.toString())) {
             return "Invalid Email Address";
-          }
-        } else {
-          if (value.length < 11) {
-            return "Incomplete Phone number";
-          } else if (value.length > 11) {
-            return "Invalid Phone number";
-            // } else if(!isValidPhoneNumber(value.toString())){
-            //   return "Invalid Phone number";
-          }
-        }
+          }}
+        // } else {
+        //   if (value.length < 11) {
+        //     return "Incomplete Phone number";
+        //   } else if (value.length > 11) {
+        //     return "Invalid Phone number";
+        //     // } else if(!isValidPhoneNumber(value.toString())){
+        //     //   return "Invalid Phone number";
+        //   }
+        // }
         return null;
       },
     );
@@ -480,38 +477,32 @@ class _LoginState extends State<Login> {
           images: "assets/images/FaceButton.png",
           press: () {
             if (!kReleaseMode) {
-              if (localauth != null) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LandingPage();
-                    },
-                  ),
-                );
-              } else {
-                Snackbar.showMessage(
-                    "Login with password atleast once to enable fingerprint login!!",
-                    _scaffoldKey);
-              }
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return LandingPage();
+                  },
+                ),
+              );
             }
           },
         ),
-        SizedBox(width: size.width * 0.03),
+        Gap(20.w),
         LoginoptionButton(
           images: "assets/images/BioButton.png",
           press: () {
             _checkBiometric();
           },
         ),
-        SizedBox(width: size.width * 0.03),
+        Gap(20.w),
         LoginoptionButton(
           images: "assets/images/Google+.png",
           press: () {
             _signInWithGoogle();
           },
         ),
-        SizedBox(width: size.width * 0.03),
+        Gap(20.w),
         // LoginoptionButton(
         //   images: "assets/images/Facebook.png",
         //   press: () {

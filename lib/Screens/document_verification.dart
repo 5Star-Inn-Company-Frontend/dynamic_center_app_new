@@ -4,6 +4,7 @@ import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/component/roundedmenu.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 import 'Camera/camera_screen1.dart';
 
@@ -23,7 +24,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
         backgroundColor: Color(scafoldcolour),
         elevation: 0.0,
         title: Text("Document Verification",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         leading: Backnavigation(),
         centerTitle: true,
@@ -50,7 +51,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                             margin: EdgeInsets.symmetric(horizontal: 30),
                             child:Text(
                               "Your document photo helps us prove your identity. It should match your profile details.",
-                              style: TextStyle(fontSize: 15),
+                              style: GoogleFonts.poppins(fontSize: 15),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -67,7 +68,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                               ],
                             ),
                             text: Text("National ID",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                             ),
                             press: (){
                               _imgfromcamera();
@@ -82,7 +83,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                               ],
                             ),
                             text: Text("Passport",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                             ),
                             press: (){
                               Navigator.push(
@@ -108,7 +109,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                               ],
                             ),
                             text: Text("Driver’s Licence",
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
+                              style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19, color: Colors.black),
                             ),
                             press: (){
                               //   Navigator.push(

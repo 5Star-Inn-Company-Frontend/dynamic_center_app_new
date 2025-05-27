@@ -1,25 +1,10 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:dynamic_center/Screens/Xchange.dart';
-import 'package:dynamic_center/Screens/auth/login.dart';
-import 'package:dynamic_center/Screens/drawer/anim_util.dart';
-import 'package:dynamic_center/Screens/drawer/circular_image.dart';
 import 'package:dynamic_center/Screens/landing_page.dart';
-import 'package:dynamic_center/Screens/profile.dart';
-import 'package:dynamic_center/Screens/support.dart';
+import 'package:dynamic_center/Screens/transaction.dart';
 import 'package:dynamic_center/Screens/transfer.dart';
-import 'package:dynamic_center/general/component/Savedetails.dart';
-import 'package:dynamic_center/general/constant.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
-
-import '../deposit.dart';
-import '../paybill.dart';
-import '../transaction.dart';
 
 class MainActivity extends StatefulWidget {
   Widget child;
@@ -260,14 +245,14 @@ class _MainActivityState extends State<MainActivity>
                 ),
                 Text(
                   first_name + " " + last_name,
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     color: Colors.black,
                     fontSize: 19,
                   ),
                 ),
                 Text(
                   'Verify your profile',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     color: Color(primarycolour),
                     fontSize: 15,
                   ),
@@ -287,7 +272,7 @@ class _MainActivityState extends State<MainActivity>
                     ),
                     title: Text(
                       item.title,
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.black),
@@ -307,7 +292,7 @@ class _MainActivityState extends State<MainActivity>
                 size: 20,
               ),
               title: Text('Support',
-                  style: TextStyle(fontSize: 14, color: Colors.black)),
+                  style: GoogleFonts.poppins(fontSize: 14, color: Colors.black)),
             ),
             ListTile(
               onTap: () {
@@ -319,7 +304,7 @@ class _MainActivityState extends State<MainActivity>
                 size: 20,
               ),
               title: Text('Sign out',
-                  style: TextStyle(fontSize: 14, color: Colors.black)),
+                  style: GoogleFonts.poppins(fontSize: 14, color: Colors.black)),
             ),
           ],
         ),
@@ -381,7 +366,7 @@ Alignment is set to centerLeft inorder to show navigation back button.
                     SizedBox(height: size.height * 0.03),
                     Text(
                       wallet.toString(),
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold,
                           fontSize: 32,
                           color: Colors.white),
@@ -391,7 +376,7 @@ Alignment is set to centerLeft inorder to show navigation back button.
                     ),
                     Text(
                       "Wallet Balance",
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      style: GoogleFonts.poppins(fontSize: 15, color: Colors.white),
                     ),
                   ]),
             ),
@@ -399,7 +384,7 @@ Alignment is set to centerLeft inorder to show navigation back button.
           Positioned(
             top: 140.0,
             child: Cardlayout(
-              color: Colors.transparent,
+              // color: Colors.transparent,
               child: Container(
                 height: size.height,
                 width: size.width,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 //  Color(primarycolour) = Color(0xff347AF0);
 const int primarycolour1 = 0xff347AF0;

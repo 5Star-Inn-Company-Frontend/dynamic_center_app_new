@@ -8,6 +8,7 @@ import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 import '../../constant/doublebutton.dart';
 
@@ -183,7 +184,7 @@ class _CameraScreenState extends State<CameraScreen>
     if (cameraController == null || !cameraController!.value.isInitialized) {
       return Text(
         'Loading',
-        style: TextStyle(
+        style: GoogleFonts.poppins(
             color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
       );
     }
@@ -373,7 +374,7 @@ class _CameraScreenState extends State<CameraScreen>
                     Spacer(),
                     Text(
                       widget.cameraAppbar,
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold,
                           fontSize: 26,
                           color: Colors.white),
@@ -399,7 +400,7 @@ class _CameraScreenState extends State<CameraScreen>
                         ),
                         Text(
                           "Position your document inside the frame. Make sure that all the data is clearly visible.",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.normal,
                               fontSize: 15,
                               color: Colors.white),
@@ -426,7 +427,7 @@ class _CameraScreenState extends State<CameraScreen>
                         children: [
                           Text(
                             _minAvailableExposureOffset.toString(),
-                            style: TextStyle(color: Colors.white),
+                            style: GoogleFonts.poppins(color: Colors.white),
                           ),
                           Slider(
                             value: _currentExposureOffset,
@@ -440,7 +441,7 @@ class _CameraScreenState extends State<CameraScreen>
                           ),
                           Text(
                             _maxAvailableExposureOffset.toString(),
-                            style: TextStyle(color: Colors.white),
+                            style: GoogleFonts.poppins(color: Colors.white),
                           ),
                         ],
                       ),

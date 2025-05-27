@@ -17,6 +17,7 @@ import 'package:dynamic_center/general/constant.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
@@ -86,7 +87,7 @@ class _ProfileState extends State<Profile> {
                       Roundedmenu(
                         text: Text(
                           "Personal information",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
                               color: Colors.black),
@@ -106,7 +107,7 @@ class _ProfileState extends State<Profile> {
                       Roundedmenu(
                         text: Text(
                           "Phone number verification",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
                               color: Colors.black),
@@ -126,7 +127,7 @@ class _ProfileState extends State<Profile> {
                       Roundedmenu(
                         text: Text(
                           "My Document",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
                               color: Colors.black),
@@ -146,7 +147,7 @@ class _ProfileState extends State<Profile> {
                       Roundedmenu(
                         text: Text(
                           "Payment & Billing",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
                               color: Colors.black),
@@ -159,7 +160,7 @@ class _ProfileState extends State<Profile> {
                       Roundedmenu(
                         text: Text(
                           "Security",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
                               color: Colors.black),
@@ -179,7 +180,7 @@ class _ProfileState extends State<Profile> {
                       Roundedmenu(
                         text: Text(
                           "Help & Support",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
                               color: Colors.black),
@@ -190,7 +191,7 @@ class _ProfileState extends State<Profile> {
                       Roundedmenu(
                         text: Text(
                           "Policy",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 19,
                               color: Colors.black),
@@ -242,7 +243,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   Text(
                     first_name + " " + last_name,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 19,
                         color: Colors.black),

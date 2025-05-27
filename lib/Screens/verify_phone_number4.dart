@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class VerifyPhoneNumber4 extends StatefulWidget {
   VerifyPhoneNumber4({
@@ -31,7 +32,7 @@ class _VerifyPhoneNumber4State extends State<VerifyPhoneNumber4> {
         elevation: 0.0,
         title: Text(
           "Well Done!",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         automaticallyImplyLeading: false,

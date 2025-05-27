@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 import 'CityModel.dart';
 
@@ -31,7 +32,7 @@ class Utils {
       child: Text(
         '$tag',
         softWrap: false,
-        style: TextStyle(
+        style: GoogleFonts.poppins(
           fontSize: 14.0,
           color: Color(0xFF666666),
         ),

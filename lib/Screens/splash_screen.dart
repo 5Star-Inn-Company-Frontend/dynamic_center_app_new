@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dynamic_center/Screens/intro.dart';
@@ -10,6 +11,7 @@ import 'package:dynamic_center/main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:package_info/package_info.dart';
 import 'package:shimmer/shimmer.dart';
@@ -17,10 +19,10 @@ import 'package:shimmer/shimmer.dart';
 import 'auth/login.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -41,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
           device1 = "Desktop${Snackbar.getRandomString(9)}";
           versionapp = "5.2.0";
         }
-        if (intro != null && intro) {
+        if (intro) {
           _navigateToLogin();
         } else {
           _navigateToHome();
@@ -87,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   channel.id,
                   channel.name,
                   // channel.description,
-                  // TODO add a proper drawable resource to android, for now using
+                  // add a proper drawable resource to android, for now using
                   //      one that already exists in example app.
                   icon: 'launch_background',
                 ),
@@ -96,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
 
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        print('A new onMessageOpenedApp event was published!');
+        log('A new onMessageOpenedApp event was published!');
         // Navigator.pushNamed(context, '/message',
         //     arguments: MessageArguments(message, true));
       });
@@ -112,7 +114,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //       sound: true,
       //     );
 
-      String? token = await FirebaseMessaging.instance.getToken();
+      // String? token = await FirebaseMessaging.instance.getToken();
       // print("FirebaseMessaging token: $token");
       if (logindetails != "") {
         FirebaseMessaging.instance.subscribeToTopic(logindetails);
@@ -178,9 +180,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: EdgeInsets.all(16.0),
                     child: Text(
                       "DYNAMIC CENTER",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                           fontSize: 24.0,
-                          fontFamily: 'Pacifico',
+                          // fontFamily: 'Pacifico',
                           shadows: <Shadow>[
                             Shadow(
                                 blurRadius: 18.0,
@@ -192,10 +194,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 Text(
                   "Business is Life",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 13.0,
                     color: Colors.white,
-                    fontFamily: 'Pacifico',
+                    // fontFamily: 'Pacifico',
                   ),
                 ),
               ],

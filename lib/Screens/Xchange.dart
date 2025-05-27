@@ -6,6 +6,7 @@ import 'package:dynamic_center/general/component/Snacbar.dart';
 import 'package:dynamic_center/general/component/confirm_dialog.dart';
 import 'package:dynamic_center/general/component/loadingdialog.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:dynamic_center/general/constant.dart';
 
 import 'package:http/http.dart' as http;
@@ -308,7 +309,7 @@ class _XchangeState extends State<Xchange> {
               children: [
                 SizedBox(height: 30,),
                 Text("Xchange",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),
                   textAlign: TextAlign.left,
                 ),
                 Container(height: 20,),

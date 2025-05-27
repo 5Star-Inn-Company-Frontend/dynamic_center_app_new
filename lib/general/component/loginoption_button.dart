@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginoptionButton extends StatelessWidget {
   final Function press;
   final String images;
   const LoginoptionButton({
-    Key? key,
+    super.key,
     required this.press,
     required this.images,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
+    
     return Container(
       // margin: EdgeInsets.symmetric(vertical: 10),
       // width: size.width * 0.8,
@@ -20,7 +20,7 @@ class LoginoptionButton extends StatelessWidget {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(images), fit: BoxFit.cover)),
+        image: DecorationImage(image: AssetImage(images), fit: BoxFit.cover)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
         child: TextButton(

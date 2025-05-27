@@ -11,6 +11,7 @@ import 'package:dynamic_center/general/constant.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
@@ -197,7 +198,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
       appBar: AppBar(
         title: Text(
           "Personal Information",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         backgroundColor: Color(scafoldcolour),
@@ -247,7 +248,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                       ),
                       Text(
                         "Gender",
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 14,
                         ),
                       ),
@@ -262,7 +263,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                               onChanged: _handleRadioValueChanged,
                               title: Text(
                                 'Male',
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   fontSize: 14,
                                   color: _radioValue == 0
                                       ? textcolor
@@ -280,7 +281,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                               onChanged: _handleRadioValueChanged,
                               title: Text(
                                 'Female',
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   fontSize: 14,
                                   color: _radioValue == 1
                                       ? textcolor

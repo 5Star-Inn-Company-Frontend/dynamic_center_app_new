@@ -8,6 +8,7 @@ import 'package:dynamic_center/general/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -223,7 +224,7 @@ class _VerifyPhoneNumber3State extends State<VerifyPhoneNumber3> {
         elevation: 0.0,
         title: Text(
           "Verify Number",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         leading: Backnavigation(),
@@ -250,7 +251,7 @@ class _VerifyPhoneNumber3State extends State<VerifyPhoneNumber3> {
                 textFieldAlignment: MainAxisAlignment.spaceAround,
                 fieldWidth: 50,
                 fieldStyle: FieldStyle.box,
-                style: TextStyle(fontSize: 17),
+                style: GoogleFonts.poppins(fontSize: 17),
                 onCompleted: (pin) {
                   print("Completed: " + pin);
                   setState(() {

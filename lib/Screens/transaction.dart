@@ -7,6 +7,7 @@ import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
 import 'package:dynamic_center/general/component/loadingdialog.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:http/http.dart' as http;
 
 import 'drawer/main_activity.dart';
@@ -238,7 +239,7 @@ class _TransactionState extends State<Transaction> {
                                           padding: EdgeInsets.only(left: 5),
                                           child: Text(
                                             nDataList.amount,
-                                            style: TextStyle(
+                                            style: GoogleFonts.poppins(
                                                 fontSize: 15.0,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -246,7 +247,7 @@ class _TransactionState extends State<Transaction> {
                                       ),
                                       Text(
                                         nDataList.date,
-                                        style: TextStyle(color: Colors.grey),
+                                        style: GoogleFonts.poppins(color: Colors.grey),
                                       ),
                                     ],
                                   ),
@@ -264,14 +265,14 @@ class _TransactionState extends State<Transaction> {
                                           padding: EdgeInsets.only(left: 5),
                                           child: Text(
                                             nDataList.name,
-                                            style: TextStyle(fontSize: 15.0),
+                                            style: GoogleFonts.poppins(fontSize: 15.0),
                                           ),
                                         ),
                                       )),
                                       Text(
                                         nDataList.code,
                                         style:
-                                            TextStyle(color: Color(0xffDF5060)),
+                                            GoogleFonts.poppins(color: Color(0xffDF5060)),
                                       ),
                                     ],
                                   ),

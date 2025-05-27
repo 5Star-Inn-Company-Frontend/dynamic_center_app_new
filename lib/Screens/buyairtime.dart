@@ -12,6 +12,7 @@ import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:dynamic_center/general/component/rounded_input_field.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
@@ -224,7 +225,7 @@ class _BuyairtimeState extends State<Buyairtime> {
                 ),
                 Text(
                   "Buy Airtime",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),
                   textAlign: TextAlign.left,
                 ),
                 Container(
@@ -244,12 +245,12 @@ class _BuyairtimeState extends State<Buyairtime> {
                         RichText(
                           text: TextSpan(
                             text: 'Amount @ ',
-                            style: TextStyle(color: Colors.black),
+                            style: GoogleFonts.poppins(color: Colors.black),
                             children: <TextSpan>[
                               TextSpan(
                                   text: '${percent}% Discount',
                                   style:
-                                      TextStyle(color: Color(primarycolour))),
+                                      GoogleFonts.poppins(color: Color(primarycolour))),
                             ],
                           ),
                         ),

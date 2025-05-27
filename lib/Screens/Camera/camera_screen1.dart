@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../constant/doublebutton.dart';
@@ -54,7 +55,7 @@ class _CameraScreen1State extends State<CameraScreen1> {
     if (cameraController == null || !cameraController!.value.isInitialized) {
       return Text(
         'Loading',
-        style: TextStyle(
+        style: GoogleFonts.poppins(
             color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
       );
     }
@@ -185,7 +186,7 @@ class _CameraScreen1State extends State<CameraScreen1> {
                     Spacer(),
                     Text(
                       "Scan Back Side",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold,
                           fontSize: 26,
                           color: Colors.white),
@@ -209,7 +210,7 @@ class _CameraScreen1State extends State<CameraScreen1> {
                       ),
                       Text(
                         "Position your document inside the frame. Make sure that all the data is clearly visible.",
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                             fontWeight: FontWeight.normal,
                             fontSize: 15,
                             color: Colors.white),

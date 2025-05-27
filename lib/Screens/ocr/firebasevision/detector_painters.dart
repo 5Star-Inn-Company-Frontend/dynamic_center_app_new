@@ -2,6 +2,7 @@
 //
 // import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 // import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 //
 // enum Detector {
 //   barcode,
@@ -101,7 +102,7 @@
 //           textDirection: TextDirection.ltr),
 //     );
 //
-//     builder.pushStyle(ui.TextStyle(color: Colors.green));
+//     builder.pushStyle(ui.GoogleFonts.poppins(color: Colors.green));
 //     for (ImageLabel label in labels) {
 //       builder.addText('Label: ${label.text}, '
 //           'Confidence: ${label.confidence!.toStringAsFixed(2)}\n');

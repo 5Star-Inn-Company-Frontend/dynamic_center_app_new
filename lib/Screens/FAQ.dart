@@ -10,6 +10,7 @@ import 'package:dynamic_center/general/component/loadingdialog.dart';
 import 'package:dynamic_center/general/component/plainmenu.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:http/http.dart' as http;
 
 class FAQ extends StatefulWidget {
@@ -123,7 +124,7 @@ class _FAQState extends State<FAQ> {
       appBar: AppBar(
         title: Text(
           "FAQ'S",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         backgroundColor: Color(scafoldcolour),
@@ -143,12 +144,12 @@ class _FAQState extends State<FAQ> {
                 //   children: [
                 //     SizedBox(height: 30,),
                 //     Text("Account",
-                //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                //       style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19),
                 //     ),
                 //     SizedBox(height: 30,),
                 //     Plainmenu(
                 //       text: Text("Unblock account",
-                //         style: TextStyle(fontSize: 19, color: Colors.black),
+                //         style: GoogleFonts.poppins(fontSize: 19, color: Colors.black),
                 //       ),
                 //       press: (){
                 //         //   Navigator.push(
@@ -163,7 +164,7 @@ class _FAQState extends State<FAQ> {
                 //     ),
                 //     Plainmenu(
                 //       text: Text("Change phone number ",
-                //         style: TextStyle(fontSize: 19, color: Colors.black),
+                //         style: GoogleFonts.poppins(fontSize: 19, color: Colors.black),
                 //       ),
                 //       press: (){
                 //         //   Navigator.push(
@@ -178,7 +179,7 @@ class _FAQState extends State<FAQ> {
                 //     ),
                 //     Plainmenu(
                 //       text: Text("Privacy information",
-                //         style: TextStyle(fontSize: 19, color: Colors.black),
+                //         style: GoogleFonts.poppins(fontSize: 19, color: Colors.black),
                 //       ),
                 //       press: (){
                 //         //   Navigator.push(
@@ -193,12 +194,12 @@ class _FAQState extends State<FAQ> {
                 //     ),
                 //     SizedBox(height: 30,),
                 //     Text("Payment and pricing",
-                //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                //       style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 19),
                 //     ),
                 //     SizedBox(height: 30,),
                 //     Plainmenu(
                 //       text: Text("Accepted payment methods",
-                //         style: TextStyle(fontSize: 19, color: Colors.black),
+                //         style: GoogleFonts.poppins(fontSize: 19, color: Colors.black),
                 //       ),
                 //       press: (){
                 //         //   Navigator.push(
@@ -213,7 +214,7 @@ class _FAQState extends State<FAQ> {
                 //     ),
                 //     Plainmenu(
                 //       text: Text("Price estimation",
-                //         style: TextStyle(fontSize: 19, color: Colors.black),
+                //         style: GoogleFonts.poppins(fontSize: 19, color: Colors.black),
                 //       ),
                 //       press: (){
                 //         //   Navigator.push(
@@ -241,7 +242,7 @@ class _FAQState extends State<FAQ> {
                               return Plainmenu(
                                 text: Text(
                                   nDataList.code,
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       fontSize: 19, color: Colors.black),
                                 ),
                                 press: () {

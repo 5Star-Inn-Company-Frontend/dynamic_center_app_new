@@ -1,29 +1,21 @@
-import 'package:dynamic_center/Screens/auth/login.dart';
-import 'package:dynamic_center/general/component/cardlayout.dart';
-import 'package:dynamic_center/general/component/loadingdialog.dart';
 import 'package:flutter/material.dart';
-import 'package:dynamic_center/general/component/rounded_input_field.dart';
-import 'package:dynamic_center/general/component/rounded_button.dart';
-import 'package:dynamic_center/general/constant.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:http/http.dart' as http;
-import 'package:dynamic_center/general/constant.dart';
-import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
 
 class Forgetpassword extends StatefulWidget {
-  Forgetpassword({Key? key}) : super(key: key);
+  const Forgetpassword({super.key});
 
   @override
-  _ForgetpasswordState createState() => _ForgetpasswordState();
+  State<Forgetpassword> createState() => _ForgetpasswordState();
 }
 
 class _ForgetpasswordState extends State<Forgetpassword> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
+
   String dialogtitle = "Forget Password Error";
-  bool _isloading = false;
+  // final bool _isloading = false;
+
   void loading(){
     var dialog = LoadingDialog();
     showDialog(
@@ -31,6 +23,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
         context: context,
         builder: (BuildContext context) => dialog);
   }
+
   void _resetpassword(String email) async {
     if (_formKey.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
@@ -41,10 +34,10 @@ class _ForgetpasswordState extends State<Forgetpassword> {
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }
       try {
-        var json_body = {
+        var jsonBody = {
           'username': email,
         };
-        http.Response response = await http.post(parseUrl('resetpassword'), body: json_body);
+        http.Response response = await http.post(parseUrl('resetpassword'), body: jsonBody);
 
         if (response.statusCode == 200) {
           String data = response.body;
@@ -97,7 +90,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
               context: context,
               builder: (BuildContext context) => dialog);
         }
-      }catch(Exception){
+      }on Exception{
         Navigator.of(context).pop();
         var dialog = CustomAlertDialog(
             title: dialogtitle,
@@ -119,66 +112,73 @@ class _ForgetpasswordState extends State<Forgetpassword> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
-          child: Container(
-          height: size.height,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: size.height * 0.04),
-               Row(
-                 children: [
-                   IconButton(icon: Icon(Icons.arrow_back_ios_sharp), onPressed: (){
-                     Navigator.pop(context);
-                   }),
-                 SizedBox(width: 50,),
-                 Text(
-                   "Forgot Password?",
-                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
-                 ),
-               ],),
-                SizedBox(height: size.height * 0.03),
-                Text(
-                  "Enter your registrated email address/Phone number to receive password reset instruction",
-                  style: TextStyle(fontSize: 15,),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: size.height * 0.3),
-                Expanded(
-                  child:
-                Cardlayout(
-                  child: Container(
-                    width: size.width,
-                    margin: EdgeInsets.all(20),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Email(),
-                          SizedBox(height: size.height * 0.2
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          "Forgot Password?",
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 16.sp),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0.sp),
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+            child: SizedBox(
+            height: size.height,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Gap(20.h),
+                  Text(
+                    "Enter your registered Email address/Phone number to receive password reset instructions",
+                    style: GoogleFonts.poppins(fontSize: 13.sp,),
+                    textAlign: TextAlign.center,
+                  ),
+
+                  Gap(40.h),
+                  Expanded(
+                    child:
+                    Cardlayout(
+                      child: Container(
+                        width: size.width,
+                        margin: EdgeInsets.all(20),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              email(),
+                              Gap(20.h),
+
+                              RoundedButton(
+                                text: "Reset Password",
+                                press: () {
+                                  _resetpassword(emailController.text);},
+                              ),
+                              Gap(20.h),
+                            ],
                           ),
-                          RoundedButton(
-                            text: "Reset Password",
-                            press: () {
-                              _resetpassword(emailController.text);},
-                          ),
-                          SizedBox(height: size.height * 0.03),
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                ),
-              ]
+                ]
+            ),
           ),
-        ),
-        ),
+          ),
+      ),
     );
   }
-  Widget Email () {
+  
+  Widget email () {
     return RoundedInputField(
       inputFormatters: [
         FilteringTextInputFormatter.deny(RegExp("[ ]")),

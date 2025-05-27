@@ -1,5 +1,6 @@
 import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class Confirma2cDialog extends StatelessWidget {
   final Color bgColor;

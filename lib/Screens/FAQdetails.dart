@@ -2,6 +2,7 @@ import 'package:dynamic_center/general/component/backnavigation.dart';
 import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class FAQdetails extends StatefulWidget {
   String Details;
@@ -19,7 +20,7 @@ class _FAQdetailsState extends State<FAQdetails> {
       appBar: AppBar(
         title: Text(
           "FAQ'S Details",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         backgroundColor: Color(scafoldcolour),

@@ -7,6 +7,7 @@ import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 // import 'package:qrscan/qrscan.dart' as scanner;
@@ -37,7 +38,7 @@ class _TwoFactorVerificationState extends State<TwoFactorVerification> {
         elevation: 0.0,
         title: Text(
           "Two-Factor Verification",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         leading: Backnavigation(),
@@ -57,7 +58,7 @@ class _TwoFactorVerificationState extends State<TwoFactorVerification> {
                   margin: EdgeInsets.symmetric(horizontal: 30),
                   child: Text(
                     "Scan the QR code or enter the code manually in your auth app e.g Google Authenticator",
-                    style: TextStyle(fontSize: 15),
+                    style: GoogleFonts.poppins(fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -102,7 +103,7 @@ class _TwoFactorVerificationState extends State<TwoFactorVerification> {
                           },
                           child: Text(
                             'Copy',
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                                 color: Color(primarycolour),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 19),

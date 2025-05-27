@@ -9,6 +9,7 @@ import 'package:dynamic_center/general/component/rounded_button.dart';
 import 'package:dynamic_center/general/component/rounded_password_field.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'dart:io';
 
 
@@ -155,7 +156,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Change Password",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.black),
         ),
         backgroundColor: Color(scafoldcolour),
         elevation: 0.0,
@@ -191,7 +192,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           visible: confirm, //Default is true,
                           child:
                           Text("Password not match",
-                            style: TextStyle(color: Colors.red),
+                            style: GoogleFonts.poppins(color: Colors.red),
                             textAlign: TextAlign.start,
                           )
 

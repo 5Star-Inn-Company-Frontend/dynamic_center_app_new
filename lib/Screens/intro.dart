@@ -1,5 +1,6 @@
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,20 +27,20 @@ class _IntroState extends State<Intro> {
 
   Widget _buildImage(String assetName) {
     return Align(
-      child: Image.asset('assets/images/$assetName.png', width: 350.0),
       alignment: Alignment.bottomCenter,
+      child: Image.asset('assets/images/$assetName.png', width: 350.0),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 14.0);
-    const pageDecoration = const PageDecoration(
-      titleTextStyle: TextStyle(
+    final body = GoogleFonts.poppins(fontSize: 14.0);
+    final pageDecoration = PageDecoration(
+      titleTextStyle: GoogleFonts.poppins(
           fontSize: 24.0,
           fontWeight: FontWeight.w700,
           color: Color(primarycolour1)),
-      bodyTextStyle: bodyStyle,
+      bodyTextStyle: body,
       // descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       pageColor: Colors.white,
       imagePadding: EdgeInsets.zero,
@@ -74,18 +75,18 @@ class _IntroState extends State<Intro> {
       showSkipButton: true,
       // skipFlex: 0,
       nextFlex: 0,
-      skip: const Text('Skip',
-          style: TextStyle(
+      skip:  Text('Skip',
+          style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Color(primarycolour1),
           )),
-      next: const Text('Next',
-          style: TextStyle(
+      next:  Text('Next',
+          style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Color(primarycolour1),
           )),
-      done: const Text('Done',
-          style: TextStyle(
+      done: Text('Done',
+          style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: Color(primarycolour1),
           )),

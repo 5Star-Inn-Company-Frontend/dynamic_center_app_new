@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
+import 'package:dynamic_center/constant/imports.dart';
 
 class ContactInfo extends ISuspensionBean {
   String name;
