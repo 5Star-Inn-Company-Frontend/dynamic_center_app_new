@@ -58,10 +58,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
   // }
   void getData() async {
     setState(() {
-      firstnameController.text = first_name;
+      firstnameController.text = firstName;
       // firstnameController.selection = TextSelection.collapsed(offset: firstnameController.text.length);
 
-      lastnameController.text = last_name;
+      lastnameController.text = lastName;
       // lastnameController.selection = TextSelection.fromPosition(TextPosition(offset:lastnameController.text.length));
       addressController.text = address;
       // addressController .selection = TextSelection.fromPosition(TextPosition(offset:addressController.text.length));
@@ -102,7 +102,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
         builder: (BuildContext context) => dialog);
   }
 
-  void _update(first_name, last_name, address, date, city, gender, citizenship,
+  void _update(firstName, lastName, address, date, city, gender, citizenship,
       phoneno, email) async {
     if (_formKey.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
@@ -111,8 +111,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
 
       try {
         var json_body = {
-          'first_name': first_name,
-          'last_name': last_name,
+          'firstName': firstName,
+          'lastName': lastName,
           'address': address,
           'date': date,
           'phoneno': city,
@@ -335,7 +335,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
       //     firstnameController.text = value;
       //   });
       // },
-      // initialValue: prefs.getString('first_name'),
+      // initialValue: prefs.getString('firstName'),
       // controller: firstnameController,
       controller: firstnameController,
       validate: (value) {
@@ -360,7 +360,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
       //     lastnameController.text = value;
       //   });
       // },
-      // initialValue: last_name,
+      // initialValue: lastName,
       controller: lastnameController,
       validate: (value) {
         if (value.isEmpty) {

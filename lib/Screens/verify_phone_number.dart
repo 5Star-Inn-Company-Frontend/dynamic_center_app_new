@@ -156,7 +156,7 @@ class _VerifyPhoneNumberState extends State<VerifyPhoneNumber> {
                         press: () {
                           print(code + checknumber());
                           if (_formKey.currentState!.validate()) {
-                            if (deviceallow.allow()) {
+                            if (DeviceAllow.allow()) {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

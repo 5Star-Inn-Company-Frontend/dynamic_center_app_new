@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dynamic_center/Screens/two_factor_verification2.dart';
-import 'package:dynamic_center/general/SizeConfig.dart';
+import 'package:dynamic_center/general/size_config.dart';
 import 'package:dynamic_center/general/component/backnavigation.dart';
 import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/component/rounded_button.dart';

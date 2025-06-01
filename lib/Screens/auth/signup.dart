@@ -125,8 +125,8 @@ class _SignupState extends State<Signup> {
       // }
       try {
         var jsonBody = {
-          'first_name': firstName,
-          'last_name': lastName,
+          'firstName': firstName,
+          'lastName': lastName,
           'email': email,
           'password': password,
           'phoneno': phoneno,

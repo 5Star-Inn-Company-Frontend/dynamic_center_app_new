@@ -1,8 +1,8 @@
-import 'package:dynamic_center/constant/constant.dart' as constant;
+// import 'package:dynamic_center/general/constant.dart' as constant;
+import 'package:dynamic_center/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:dynamic_center/constant/imports.dart';
 
-// import 'constant.dart';
 
 class DoubleButton extends StatelessWidget {
   final Function? press;
@@ -12,16 +12,15 @@ class DoubleButton extends StatelessWidget {
   final Color textcolor, buttoncolor, secondbuttoncolor;
   final Widget loaderwidget;
   const DoubleButton(
-      {Key? key,
+      {super.key,
       this.press,
       this.name,
       this.width = 200,
-      this.textcolor = constant.primarycolour,
-      this.loaderwidget = constant.loadingWidget,
+      this.textcolor = const Color(primarycolour),
+      this.loaderwidget = loadingWidget,
       this.buttoncolor = Colors.white,
       this.isloading = false,
-      this.secondbuttoncolor = Colors.white})
-      : super(key: key);
+      this.secondbuttoncolor = Colors.white});
 
   @override
   Widget build(BuildContext context) {

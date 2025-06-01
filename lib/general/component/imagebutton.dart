@@ -8,36 +8,38 @@ class Imagebutton extends StatelessWidget {
   final Color textColor;
 
   const Imagebutton({
-    Key? key,
+    super.key,
     required this.text,
     required this.imageaddress,
     required this.press,
     this.textColor = Colors.black,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      child: GestureDetector(
-        onTap: () {
-          press();
-        },
-        child: Column(
-          children: [
-            Image(
-              image: AssetImage(imageaddress),
-              height: 50,
-              width: 50,
+    // Size size = MediaQuery.of(context).size;
+
+    return GestureDetector(
+      onTap: () {
+        press();
+      },
+      child: Column(
+        children: [
+          Image(
+            image: AssetImage(imageaddress),
+            height: 50.h,
+            width: 50.w,
+          ),
+          Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.normal,
+              fontSize: 13.5.sp,
+              color: textColor,
+              
             ),
-            Text(
-              text,
-              style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 15,
-                  color: textColor),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

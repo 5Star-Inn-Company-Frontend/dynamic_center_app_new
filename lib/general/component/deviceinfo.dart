@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dynamic_center/general/constant.dart';
 import 'package:flutter/services.dart';
@@ -85,16 +84,16 @@ _readAndroidBuildData(AndroidDeviceInfo build) {
 }
 
 _readIosDeviceInfo(IosDeviceInfo data) {
-  name = data.name!;
-  systemName = data.systemName!;
-  systemVersion = data.systemVersion!;
-  model = data.model!;
-  localizedModel = data.localizedModel!;
+  name = data.name;
+  systemName = data.systemName;
+  systemVersion = data.systemVersion;
+  model = data.model;
+  localizedModel = data.localizedModel;
   identifierForVendor = data.identifierForVendor!;
   isPhysicalDevice = data.isPhysicalDevice;
-  utsnamesysname = data.utsname.sysname!;
-  utsnamenodename = data.utsname.nodename!;
-  utsnamerelease = data.utsname.release!;
-  utsnameversion = data.utsname.version!;
-  utsnamemachine = data.utsname.machine!;
+  utsnamesysname = data.utsname.sysname;
+  utsnamenodename = data.utsname.nodename;
+  utsnamerelease = data.utsname.release;
+  utsnameversion = data.utsname.version;
+  utsnamemachine = data.utsname.machine;
 }

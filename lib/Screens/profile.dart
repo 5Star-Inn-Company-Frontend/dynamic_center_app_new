@@ -6,7 +6,7 @@ import 'package:dynamic_center/Screens/PersonalInformation.dart';
 import 'package:dynamic_center/Screens/document_verification.dart';
 import 'package:dynamic_center/Screens/security.dart';
 import 'package:dynamic_center/Screens/verify_phone_number.dart';
-import 'package:dynamic_center/general/SizeConfig.dart';
+import 'package:dynamic_center/general/size_config.dart';
 import 'package:dynamic_center/general/component/Snacbar.dart';
 import 'package:dynamic_center/general/component/backnavigation.dart';
 import 'package:dynamic_center/general/component/cardlayout.dart';
@@ -237,12 +237,12 @@ class _ProfileState extends State<Profile> {
                       print("value:$value");
                     },
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(profile_path),
+                      backgroundImage: NetworkImage(profilePath),
                       radius: 50,
                     ),
                   ),
                   Text(
-                    first_name + " " + last_name,
+                    firstName + " " + lastName,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 19,

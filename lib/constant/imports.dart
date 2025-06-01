@@ -1,5 +1,5 @@
 export 'package:dynamic_center/Screens/auth/signup.dart';
-export 'package:dynamic_center/general/SizeConfig.dart';
+export 'package:dynamic_center/general/size_config.dart';
 export 'package:dynamic_center/general/component/Savedetails.dart';
 export 'package:dynamic_center/general/component/Snacbar.dart';
 export 'package:dynamic_center/general/component/already_have_an_account_acheck.dart';
@@ -33,3 +33,9 @@ export 'package:dynamic_center/Screens/drawer/circular_image.dart';
 export 'package:dynamic_center/Screens/profile.dart';
 export 'package:dynamic_center/Screens/support.dart';
 export 'package:dynamic_center/Screens/deposit.dart';
+export 'package:dynamic_center/Screens/splash_screen.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'package:firebase_crashlytics/firebase_crashlytics.dart';
+export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
+export 'package:responsive_framework/responsive_framework.dart';

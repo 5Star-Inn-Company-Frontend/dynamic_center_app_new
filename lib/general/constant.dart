@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:dynamic_center/constant/imports.dart';
 
 //  Color(primarycolour) = Color(0xff347AF0);
 const int primarycolour1 = 0xff347AF0;
 const primarycolour2 = Color(0xff347AF0);
-int primarycolour = 0xff347AF0;
-int scafoldcolour = 0xffEDF1F9;
-int kTextColor = 0xFF757575;
+const primarycolour = 0xff347AF0;
+const scafoldcolour = 0xffEDF1F9;
+const kTextColor = 0xFF757575;
 
 // int kShrinePink50 = 0xFFFEEAE6;
 // int kShrinePink100 = 0xFFFEDBD0;
@@ -17,7 +16,7 @@ int kShrineScrim = 0x73442C2E;
 // const Color kShrineFrameBrown = Color(0x8A442C2E);
 // const Color kShrineScrim = Color(0x73442C2E);
 
-String Baseurl = "https://dynamiccenter.5starcompany.com.ng/api/";
+String baseurl = "https://dynamiccenter.5starcompany.com.ng/api/";
 String nonetwork = "No internet connection, try again later";
 String versionsecurityPatch = "";
 int versionsdkInt = 0;
@@ -59,10 +58,10 @@ String utsnameversion = "";
 String utsnamemachine = "";
 bool draweropen = false;
 String appversion = "1";
-String profile_path =
+String profilePath =
     "https://ui-avatars.com/api/?name=Sa&color=7F9CF5&background=EBF4FF";
-String first_name = "samji";
-String last_name = "samji";
+String firstName = "samji";
+String lastName = "samji";
 String company = "Samji";
 int wallet = 0;
 String token = "";
@@ -88,11 +87,11 @@ String localauth = "";
 bool intro = false;
 bool googlelogin = false;
 bool facebooklogin = false;
-String paystack_pub_test = "pk_test_b987677881ebe03cc259505b4dbd30da70651f64";
-String paystackPublicKey = paystack_pub_test;
+final String paystackPubTest = "pk_test_b987677881ebe03cc259505b4dbd30da70651f64";
+String paystackPublicKey = paystackPubTest;
 parseUrl(endpoint) {
   // return Uri.parse("${decrypt(Baseurl)}" + endpoint);
-  return Uri.parse("${Baseurl}" + endpoint);
+  return Uri.parse(baseurl + endpoint);
 }
 
 bool isValidPhoneNumber(String phoneNumber) {
@@ -101,7 +100,7 @@ bool isValidPhoneNumber(String phoneNumber) {
   final pattern = r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$';
   final regExp = RegExp(pattern);
 
-  if (phoneNumber == null || phoneNumber.isEmpty) {
+  if (phoneNumber.isEmpty) {
     return false;
   }
 

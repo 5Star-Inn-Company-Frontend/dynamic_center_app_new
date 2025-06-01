@@ -72,7 +72,7 @@ class _DepositState extends State<Deposit> {
 
   _launchURL() async {
     if (await canLaunch(url)) {
-      if (!deviceallow.allow()) {
+      if (!DeviceAllow.allow()) {
         Navigator.pop(context);
         await launch(url);
       }

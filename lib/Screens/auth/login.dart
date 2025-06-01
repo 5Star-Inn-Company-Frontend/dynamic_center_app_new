@@ -377,9 +377,18 @@ class _LoginState extends State<Login> {
                               text: "Login",
                               press: () {
                                 if (_formKey.currentState!.validate()) {
-                                  _login(emailController.text,
-                                      passwordController.text);
+                                  // _login(emailController.text,
+                                  //     passwordController.text);
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return LandingPage();
+                                      },
+                                    ),
+                                  );
                                 }
+
                               },
                             ),
                             Gap(20.h),

@@ -7,15 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MainActivity extends StatefulWidget {
-  Widget child;
+  final Widget child;
   final int currentIndex;
   final GlobalKey<ScaffoldState>? scaffoldKey;
-  MainActivity(
-      {Key? key, required this.child, this.currentIndex = 1, this.scaffoldKey})
-      : super(key: key);
+  const MainActivity(
+      {super.key, required this.child, this.currentIndex = 1, this.scaffoldKey});
 
   @override
-  _MainActivityState createState() => _MainActivityState();
+  State<MainActivity> createState() => _MainActivityState();
 }
 
 class _MainActivityState extends State<MainActivity>
@@ -76,7 +75,7 @@ class _MainActivityState extends State<MainActivity>
         //     .showSnackBar(SnackBar(content: Text('You can now login')));
 
       }
-    } catch (Exception) {}
+    } on Exception {}
   }
 
   void animate(String hero) {
@@ -177,35 +176,33 @@ class _MainActivityState extends State<MainActivity>
   }
 
   Widget activityContainer(BuildContext context, BoxConstraints constraint) {
-    final ThemeData _theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     Size size = MediaQuery.of(context).size;
-    print(size.height);
-    return Container(
-      child: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
-        child: Stack(
-          children: <Widget>[
-            Container(
-              child: _backView(_theme),
+    // print(size.height);
+    return SingleChildScrollView(
+      physics: ClampingScrollPhysics(),
+      child: Stack(
+        children: <Widget>[
+          SizedBox(
+            height: size.height,
+            child: _backView(theme),
+          ),
+          GestureDetector(
+            child: SizedBox(
               height: size.height,
+              child: _frontView(),
             ),
-            GestureDetector(
-              child: Container(
-                child: _frontView(),
-                height: size.height,
-              ),
-              onTap: () {
-                if (draweropen) {
-                  draweropen = false;
-                  _controller!.fling(
-                      velocity: AnimUtil.isBackpanelVisible(_controller!)
-                          ? -1.0
-                          : 1.0);
-                }
-              },
-            ),
-          ],
-        ),
+            onTap: () {
+              if (draweropen) {
+                draweropen = false;
+                _controller!.fling(
+                    velocity: AnimUtil.isBackpanelVisible(_controller!)
+                        ? -1.0
+                        : 1.0);
+              }
+            },
+          ),
+        ],
       ),
     );
   }
@@ -240,11 +237,11 @@ class _MainActivityState extends State<MainActivity>
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: CircularImage(
-                    NetworkImage(profile_path),
+                    NetworkImage(profilePath),
                   ),
                 ),
                 Text(
-                  first_name + " " + last_name,
+                  "$firstName $lastName",
                   style: GoogleFonts.poppins(
                     color: Colors.black,
                     fontSize: 19,
@@ -360,32 +357,32 @@ Alignment is set to centerLeft inorder to show navigation back button.
               alignment: Alignment.center,
               color: Color(primarycolour),
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: size.height * 0.03),
-                    Text(
-                      wallet.toString(),
-                      style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 32,
-                          color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Wallet Balance",
-                      style: GoogleFonts.poppins(fontSize: 15, color: Colors.white),
-                    ),
-                  ]),
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Gap(20.h),
+                  Text(
+                    wallet.toString(),
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                        color: Colors.white),
+                  ),
+                  Gap(10.h),
+                  Text(
+                    "Wallet Balance",
+                    style: GoogleFonts.poppins(fontSize: 15.sp, color: Colors.white),
+                  ),
+                ]
+              ),
             ),
           ),
+          
           Positioned(
             top: 140.0,
             child: Cardlayout(
               // color: Colors.transparent,
-              child: Container(
+              child: SizedBox(
                 height: size.height,
                 width: size.width,
                 child: widget.child,
@@ -453,14 +450,14 @@ Alignment is set to centerLeft inorder to show navigation back button.
     }
   }
 
-  void _startAnimation(AnimationController _controller) {
+  void _startAnimation(AnimationController controller) {
     if (draweropen) {
       draweropen = false;
     } else {
       draweropen = true;
     }
-    _controller.fling(
-        velocity: AnimUtil.isBackpanelVisible(_controller) ? -1.0 : 1.0);
+    controller.fling(
+        velocity: AnimUtil.isBackpanelVisible(controller) ? -1.0 : 1.0);
   }
 
   @override

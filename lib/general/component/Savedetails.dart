@@ -4,26 +4,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 SaveDetails(cmddetails, login) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   if (login) {
-    first_name = cmddetails['first_name'];
-    prefs.setString('first_name', cmddetails['first_name']);
-    last_name = cmddetails['last_name'];
-    prefs.setString('last_name', cmddetails['last_name']);
+    firstName = cmddetails['firstName'];
+    prefs.setString('firstName', cmddetails['firstName']);
+    lastName = cmddetails['lastName'];
+    prefs.setString('lastName', cmddetails['lastName']);
     company = cmddetails['company'];
     prefs.setString('company', cmddetails['company']);
-    profile_path = cmddetails['profile_path'];
-    prefs.setString('profile_path', cmddetails['profile_path']);
+    profilePath = cmddetails['profilePath'];
+    prefs.setString('profilePath', cmddetails['profilePath']);
     token = cmddetails['token'];
     prefs.setString('token', cmddetails['token']);
     return;
   }
-  first_name = cmddetails['first_name'];
-  prefs.setString('first_name', cmddetails['first_name']);
-  last_name = cmddetails['last_name'];
-  prefs.setString('last_name', cmddetails['last_name']);
+  firstName = cmddetails['firstName'];
+  prefs.setString('firstName', cmddetails['firstName']);
+  lastName = cmddetails['lastName'];
+  prefs.setString('lastName', cmddetails['lastName']);
   // company = cmddetails['company'];
   // prefs.setString('company', cmddetails['company']);
-  // profile_path = cmddetails[' profile_photo_url'];
-  // prefs.setString('profile_path', cmddetails[' profile_photo_url']);
+  // profilePath = cmddetails[' profile_photo_url'];
+  // prefs.setString('profilePath', cmddetails[' profile_photo_url']);
   email = cmddetails['email'];
   prefs.setString('email', cmddetails['email']);
   phoneno = cmddetails['phoneno'];
@@ -53,10 +53,10 @@ SaveDetails(cmddetails, login) async {
 
 getdetails() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  first_name = prefs.getString('first_name') ?? "";
-  last_name = prefs.getString('last_name') ?? "";
+  firstName = prefs.getString('firstName') ?? "";
+  lastName = prefs.getString('lastName') ?? "";
   company = prefs.getString('company') ?? "";
-  profile_path = prefs.getString('profile_path') ?? "";
+  profilePath = prefs.getString('profilePath') ?? "";
   wallet = prefs.getInt('wallet') ?? 0;
   token = prefs.getString('token') ?? "";
   logindetails = prefs.getString('logindetails') ?? "";

@@ -1,22 +1,15 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dynamic_center/Screens/intro.dart';
-import 'package:dynamic_center/general/component/Snacbar.dart';
 import 'package:dynamic_center/general/component/device.dart';
 import 'package:dynamic_center/general/component/deviceinfo.dart';
-import 'package:dynamic_center/general/constant.dart';
 import 'package:dynamic_center/main.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:dynamic_center/constant/imports.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:package_info/package_info.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'auth/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -55,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   getsharepref() async {
-    if (deviceallow.allow()) {
+    if (DeviceAllow.allow()) {
       // if (Platform.isAndroid || Platform.isIOS) {
       //   PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
       //     appName = packageInfo.appName;
@@ -180,22 +173,24 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: EdgeInsets.all(16.0),
                     child: Text(
                       "DYNAMIC CENTER",
-                      style: GoogleFonts.poppins(
-                          fontSize: 24.0,
+                      style: GoogleFonts.manrope(
+                          fontSize: 24.0.sp,
                           // fontFamily: 'Pacifico',
+                          letterSpacing: 3.0,
                           shadows: <Shadow>[
                             Shadow(
-                                blurRadius: 18.0,
-                                color: Colors.black87,
-                                offset: Offset.fromDirection(120, 12))
-                          ]),
+                              blurRadius: 12.0.r,
+                              color: Colors.black87,
+                              offset: Offset.fromDirection(90, 8))
+                          ],
+                      )
                     ),
                   ),
                 ),
                 Text(
                   "Business is Life",
                   style: GoogleFonts.poppins(
-                    fontSize: 13.0,
+                    fontSize: 15.0.sp,
                     color: Colors.white,
                     // fontFamily: 'Pacifico',
                   ),

@@ -21,7 +21,7 @@ double cardheight(
     double addheight = 0,
     bool needed = false}) {
   double screenHeight = MediaQuery.of(context).size.height;
-  print(screenHeight);
+  // print(screenHeight);
 // double screenHeight = SizeConfig.screenHeight;
   if (needed) {
     if (screenHeight >= 1098) {

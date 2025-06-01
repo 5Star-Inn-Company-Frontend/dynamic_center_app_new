@@ -1,6 +1,6 @@
 import 'package:dynamic_center/Screens/change_password.dart';
 import 'package:dynamic_center/Screens/two_factor_verification.dart';
-import 'package:dynamic_center/general/SizeConfig.dart';
+import 'package:dynamic_center/general/size_config.dart';
 import 'package:dynamic_center/general/component/backnavigation.dart';
 import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/component/roundedmenu.dart';

@@ -1,6 +1,6 @@
-import 'dart:io' show Platform, exit;
+import 'dart:io' show Platform;
 
-class deviceallow{
+class DeviceAllow{
   static allow(){
     if(Platform.isAndroid || Platform.isIOS) {
       return true;
