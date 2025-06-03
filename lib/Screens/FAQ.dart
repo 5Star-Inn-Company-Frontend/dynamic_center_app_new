@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dynamic_center/Screens/FAQdetails.dart';
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/general/component/backnavigation.dart';
 import 'package:dynamic_center/general/component/cardlayout.dart';
 import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
@@ -35,7 +35,7 @@ class _FAQState extends State<FAQ> {
 
   void getData() async {
     try {
-      loading();
+      // loading();
       // http.Response response = await http.get('${Baseurl}faq',
       http.Response response =
           await http.get(parseUrl("companydetails"), headers: {

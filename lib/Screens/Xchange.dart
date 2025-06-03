@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dynamic_center/Screens/drawer/main_activity.dart';
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/Screens/paybill.dart';
 import 'package:dynamic_center/general/component/Snacbar.dart';
 import 'package:dynamic_center/general/component/confirm_dialog.dart';
@@ -41,7 +41,7 @@ class _XchangeState extends State<Xchange> {
     _mockCheckForSession().then(
             (status) async{
           if (status) {
-            loading();
+            // loading();
           }
         }
     );
@@ -53,7 +53,7 @@ class _XchangeState extends State<Xchange> {
   }
   void getData() async {
     try {
-      // loading();
+      // // loading();
       http.Response response = await http.get(parseUrl("electricityconfig"),
           headers: {HttpHeaders.contentTypeHeader: "application/json", HttpHeaders.authorizationHeader: "Bearer $token"});
 
@@ -128,7 +128,7 @@ class _XchangeState extends State<Xchange> {
     if (_Buykey.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }
@@ -215,7 +215,7 @@ class _XchangeState extends State<Xchange> {
     if (_Buykey.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/general/component/loadingdialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:dynamic_center/general/component/backnavigation.dart';
@@ -67,7 +67,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       setState(() {
         confirm = false;
       });
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }

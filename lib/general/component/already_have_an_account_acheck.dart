@@ -17,7 +17,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       children: <Widget>[
         Text(
           login ? "Don’t have an Account ? " : "Already have an Account ? ",
-          style: GoogleFonts.poppins(color: Colors.black),
+          style: GoogleFonts.poppins(color: Colors.black, fontSize: 15.sp),
         ),
         GestureDetector(
           onTap: () {
@@ -28,6 +28,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
             style: GoogleFonts.poppins(
               color: Color(primarycolour),
               fontWeight: FontWeight.bold,
+              fontSize: 15.sp
             ),
           ),
         )

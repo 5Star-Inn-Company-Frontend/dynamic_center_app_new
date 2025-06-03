@@ -19,7 +19,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: ">=3.6.0 <3.8.0"
+
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -73,6 +74,9 @@ dependencies:
   flutter_screenutil: ^5.9.3
   gap: ^3.0.1
   google_fonts: ^6.2.1
+  flutter_secure_storage: ^4.2.1
+  dio: ^5.8.0+1
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

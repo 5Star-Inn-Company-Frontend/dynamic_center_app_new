@@ -1,5 +1,5 @@
 import 'package:dynamic_center/Screens/Xchange.dart';
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/Screens/transaction.dart';
 import 'package:dynamic_center/Screens/transfer.dart';
 import 'package:dynamic_center/constant/imports.dart';

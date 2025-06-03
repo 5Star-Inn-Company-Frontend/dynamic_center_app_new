@@ -4,7 +4,7 @@ import 'package:dynamic_center/constant/imports.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'auth/login.dart';
+import 'login/login.dart';
 
 class Intro extends StatefulWidget {
   Intro({Key? key}) : super(key: key);

@@ -12,9 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:dynamic_center/constant/imports.dart';
 import 'package:http/http.dart' as http;
 
-import 'buyairtime.dart';
-import 'buydata.dart';
-import 'buytv.dart';
+import '../buyairtime.dart';
+import '../buydata.dart';
+import '../buytv.dart';
 
 // import 'buydata.dart';
 

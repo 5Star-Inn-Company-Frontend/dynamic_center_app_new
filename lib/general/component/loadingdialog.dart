@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingDialog extends StatelessWidget {
   final Color bgColor;
   final double circularBorderRadius;
 
-  LoadingDialog({
+  const LoadingDialog({super.key, 
     this.circularBorderRadius = 15.0,
     this.bgColor = Colors.white,
   })  : assert(bgColor != null),
@@ -15,13 +14,13 @@ class LoadingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Container(
-        height: 230,
+      content: SizedBox(
+        height: 170,
         child:
         SpinKitWave(
           color: Colors.blue,
           type: SpinKitWaveType.start,
-          size: 150.0,
+          size: 100.0,
         ),
         // CircularProgressIndicator(
         // ),

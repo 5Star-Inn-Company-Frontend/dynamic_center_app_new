@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/general/component/Snacbar.dart';
 import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
 import 'package:dynamic_center/general/component/loadingdialog.dart';
@@ -35,7 +35,7 @@ class _TransactionState extends State<Transaction> {
 
   void getData() async {
     try {
-      loading();
+      // loading();
       http.Response response =
           await http.get(parseUrl("transactions"), headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -103,7 +103,7 @@ class _TransactionState extends State<Transaction> {
 
   void gettransactindetails() async {
     try {
-      loading();
+      // loading();
       http.Response response =
           await http.get(parseUrl("transaction/$_selectedLocation"), headers: {
         HttpHeaders.contentTypeHeader: "application/json",

@@ -1,8 +1,14 @@
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
+import 'package:dynamic_center/Screens/login/auth/login_auth.dart';
+import 'package:dynamic_center/Screens/login/model/login_request.dart';
+import 'package:dynamic_center/Screens/login/state_mgt/login_logic.dart';
 import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:local_auth/local_auth.dart';
+import 'dart:developer' as dev;
+import 'package:local_auth/error_codes.dart' as auth_error;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,8 +18,26 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final logic = Get.find<LoginLogic>();
+  final state = Get.find<LoginLogic>().state;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void setLoading(bool val) {
+    setState(() {
+      state.isLoading.value = val;
+    });
+  }
+
+  final _storage = const FlutterSecureStorage();
+  void saveUserDetails() async {
+    if (state.rememberMe == true.obs) {
+      await _storage.write(key: 'email', value: emailController.text);
+      await _storage.write(key: 'password', value: passwordController.text);
+    }
+  }
+
   // Initially password is obscure
   bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
@@ -21,12 +45,32 @@ class _LoginState extends State<Login> {
   late SharedPreferences prefs;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   // final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   void initState() {
     super.initState();
     SharedPreferences.getInstance().then((instance) {
       prefs = instance;
     });
+
+    Get.put(AuthController());
+
+    _storage.read(key: 'email').then((value) {
+      if (value != null) {
+        setState(() {
+          emailController.text = value;
+        });
+      }
+    });
+
+    _storage.read(key: 'password').then((value) {
+      if (value != null) {
+        setState(() {
+          passwordController.text = value;
+        });
+      }
+    });
+    
     // Firebase.initializeApp();
   }
 
@@ -40,9 +84,8 @@ class _LoginState extends State<Login> {
   void _login(String email, password) async {
     // If the form is valid, display a snackbar. In the real world,
     // you'd often call a server or save the information in a database.
-
     print("$email is $password $device1");
-    loading();
+    // loading();
     // if(token != null){
     //   headers.addAll({"Authorization" : "Bearer "+token});
     // }
@@ -54,7 +97,6 @@ class _LoginState extends State<Login> {
       };
       http.Response response =
           await http.post(parseUrl("login"), body: jsonBody);
-
       if (response.statusCode == 200) {
         Navigator.of(context).pop();
         String data = response.body;
@@ -133,42 +175,40 @@ class _LoginState extends State<Login> {
 
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  void _checkBiometric() async {
-    final LocalAuthentication auth = LocalAuthentication();
-    bool canCheckBiometrics = false;
-    try {
-      canCheckBiometrics = await auth.canCheckBiometrics;
-    } catch (e) {
-      // Snackbar.showMessage('error biome trics $e');
-    }
-    if (canCheckBiometrics) {
-      late List<BiometricType> availableBiometrics;
-      try {
-        availableBiometrics = await auth.getAvailableBiometrics();
-      } catch (e) {}
-
-      if (availableBiometrics.isNotEmpty) {
-        for (var ab in availableBiometrics) {}
-      } else {}
-
-      bool authenticated = false;
-      try {
-        authenticated = await auth.authenticate(
-          localizedReason: 'Place your finger on the sensor to login',
-          options: const AuthenticationOptions(
-            useErrorDialogs: true,
-            stickyAuth: true,
-          ),
-        );
-      } catch (e) {}
-      // setState(() {
-      //   isAuth = authenticated ? true : false;
-      // });
-      if (authenticated) {
-        _login(logindetails, loginpass);
-      }
-    }
-  }
+  // void _checkBiometric() async {
+  //   final LocalAuthentication auth = LocalAuthentication();
+  //   bool canCheckBiometrics = false;
+  //   try {
+  //     canCheckBiometrics = await auth.canCheckBiometrics;
+  //   } catch (e) {
+  //     // Snackbar.showMessage('error biome trics $e');
+  //   }
+  //   if (canCheckBiometrics) {
+  //     late List<BiometricType> availableBiometrics;
+  //     try {
+  //       availableBiometrics = await auth.getAvailableBiometrics();
+  //     } catch (e) {}
+  //     if (availableBiometrics.isNotEmpty) {
+  //       for (var ab in availableBiometrics) {}
+  //     } else {}
+  //     bool authenticated = false;
+  //     try {
+  //       authenticated = await auth.authenticate(
+  //         localizedReason: 'Place your finger on the sensor to login',
+  //         options: const AuthenticationOptions(
+  //           useErrorDialogs: true,
+  //           stickyAuth: true,
+  //         ),
+  //       );
+  //     } catch (e) {}
+  //     // setState(() {
+  //     //   isAuth = authenticated ? true : false;
+  //     // });
+  //     if (authenticated) {
+  //       _login(logindetails, loginpass);
+  //     }
+  //   }
+  // }
 
   // bool _isLoggedIn = false;
   late Map userProfile;
@@ -295,6 +335,94 @@ class _LoginState extends State<Login> {
     // }
   }
 
+  final LocalAuthentication auth = LocalAuthentication();
+  String _authStatus = "Not Authenticated";
+
+  Future<void> _authenticate() async {
+    bool canCheckBiometrics;
+    bool isAuthenticated = false;
+
+    try {
+      canCheckBiometrics = await auth.canCheckBiometrics;
+
+      if (!canCheckBiometrics) {
+        setState(() {
+          _authStatus = "Biometric authentication is not available on this device.";
+        });
+        return;
+      }
+
+      isAuthenticated = await auth.authenticate(
+        localizedReason: 'Please authenticate to login',
+        options: const AuthenticationOptions(
+          biometricOnly: true,
+          stickyAuth: true,
+          useErrorDialogs: false,
+        ),
+      );
+
+      if (isAuthenticated) {
+        final authController = Get.find<AuthController>();
+        await authController.login(
+          LoginRequest(
+            email: emailController.text,
+            password: passwordController.text,
+          ),
+        );
+        saveUserDetails();
+      }
+
+      setState(() {
+        _authStatus = isAuthenticated
+        ? "Authenticated Successfully"
+        : "Failed to Authenticate";
+      });
+      dev.log("Authentication Status: $_authStatus");
+      
+    } on PlatformException catch (e) {
+      String message;
+      switch (e.code) {
+        case auth_error.notAvailable:
+          message = "Biometric hardware not available.";
+          Get.snackbar('Error', message);
+          dev.log(message);
+          break;
+        case auth_error.notEnrolled:
+          message = "No biometrics enrolled on this device.";
+          Get.snackbar('Error', message);
+          dev.log(message);
+          break;
+        case auth_error.lockedOut:
+          message = "Biometrics locked. Try again later.";
+          Get.snackbar('Error', message);
+          dev.log(message);
+          break;
+        case auth_error.permanentlyLockedOut:
+          message = "Biometrics permanently locked. Use passcode.";
+          Get.snackbar('Error', message);
+          dev.log(message);
+          break;
+        case auth_error.passcodeNotSet:
+          message = "Device passcode not set.";
+          Get.snackbar('Error', message);
+          dev.log(message);
+          break;
+        default:
+          message = "Authentication error: ${e.message}";
+          Get.snackbar('Error', message);
+          dev.log(message);
+      }
+
+      setState(() {
+        _authStatus = message;
+      });
+    } catch (e) {
+      setState(() {
+        _authStatus = "An unknown error occurred: $e";
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -303,141 +431,123 @@ class _LoginState extends State<Login> {
       key: _scaffoldKey,
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
-        child: SizedBox(
-          height: cardheight(context: context, needed: true),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Gap(50.h),
-                Text(
-                  "Welcome",
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Gap(50.h),
+              Text(
+                "Welcome",
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26),
+              ),
+        
+              Gap(20.h),
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20.r),
+                  bottomRight: Radius.circular(20.r),
                 ),
-
-                Gap(20.h),
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20.r),
-                    bottomRight: Radius.circular(20.r),
-                  ),
-                  child: Image(
-                    image: AssetImage("assets/images/login.png"),
-                  ),
+                child: Image(
+                  image: AssetImage("assets/images/login.png"),
                 ),
-
-                Expanded(
-                  child: Cardlayout(
-                    child: Container(
-                      width: size.width,
-                      margin: EdgeInsets.only(top: 30.h, right: 16.w, left: 16.w),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          // crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            email(),
-                            Gap(15.h),
-
-                            password(),
-                            Gap(10.h),
+              ),
+        
+              Container(
+                width: size.width,
+                margin: EdgeInsets.only(top: 30.h, right: 16.w, left: 16.w),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      email(),
+                      Gap(15.h),
                             
-                            // forgot password
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          // return JsonApiDropdown();
-                                          return Forgetpassword();
-                                        },
-                                      ),
-                                    );
+                      password(),
+                      Gap(10.h),
+                      
+                      // forgot password
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    // return JsonApiDropdown();
+                                    return Forgetpassword();
                                   },
-                                  child: Text(
-                                    "Forgot your password?",
-                                    style: GoogleFonts.poppins(
-                                        color: Color(primarycolour),
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.right,
-                                  ),
                                 ),
-                              ],
-                            ),
-                            Gap(30.h),
-
-                            // login button
-                            RoundedButton(
-                              text: "Login",
-                              press: () {
-                                if (_formKey.currentState!.validate()) {
-                                  // _login(emailController.text,
-                                  //     passwordController.text);
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return LandingPage();
-                                      },
-                                    ),
-                                  );
-                                }
-
-                              },
-                            ),
-                            Gap(20.h),
-
-                            Text(
-                              "Connect With:",
-                              style: GoogleFonts.poppins(color: Colors.red),
+                              );
+                            },
+                            child: Text(
+                              "Forgot your password?",
+                              style: GoogleFonts.poppins(
+                                  color: Color(primarycolour),
+                                  fontWeight: FontWeight.bold),
                               textAlign: TextAlign.right,
                             ),
-                            Gap(8.h),
-
-                            loginoption(size),
-                            Gap(20.h),
-
-                            // already have an account
-                            AlreadyHaveAnAccountCheck(
-                              press: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      // return JsonApiDropdown();
-                                      return Signup();
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
+                      Gap(30.h),
+                            
+                      // login button
+                      LoadButton(
+                        width: MediaQuery.of(context).size.width * .73,
+                        label: 'Login',
+                        function: () async {
+                          final authController = Get.find<AuthController>();
+                          await authController.login(
+                            LoginRequest(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ),
+                          );
+                          saveUserDetails();
+                        },
+                      ),
+                      Gap(20.h),
+                            
+                      Text(
+                        "Connect With:",
+                        style: GoogleFonts.poppins(color: Colors.red),
+                        textAlign: TextAlign.right,
+                      ),
+                      Gap(8.h),
+                            
+                      loginoption(size),
+                      Gap(20.h),
+                            
+                      // already have an account
+                      AlreadyHaveAnAccountCheck(
+                        press: () {
+                          Get.toNamed(Routes.SIGNUPVIEW);
+                        },
+                      ),
+                    ],
                   ),
                 ),
-              ]),
-        ),
+              ),
+            ]),
       ),
     );
   }
 
   Widget email() {
     return RoundedInputField(
+      controller: emailController,
       keyboardType: TextInputType.emailAddress,
       inputFormatters: [
         FilteringTextInputFormatter.deny(RegExp("[ ]")),
       ],
       labelText: "Email Address",
       onChanged: (value) {
-        emailController.text = value;
+        // emailController.text = value;
       },
       validate: (value) {
         if (value.isEmpty) {
@@ -462,8 +572,9 @@ class _LoginState extends State<Login> {
 
   Widget password() {
     return RoundedPasswordField(
+      controller: passwordController,
       onChanged: (value) {
-        passwordController.text = value;
+        // passwordController.text = value;
       },
       press: () {
         _toggle();
@@ -501,7 +612,8 @@ class _LoginState extends State<Login> {
         LoginoptionButton(
           images: "assets/images/BioButton.png",
           press: () {
-            _checkBiometric();
+            // _checkBiometric();
+            _authenticate();
           },
         ),
         Gap(20.w),

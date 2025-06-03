@@ -2,7 +2,7 @@ import 'package:dynamic_center/constant/imports.dart';
 import 'package:flutter/material.dart';
 
 class RoundedInputField extends StatelessWidget {
-  final String labelText, initialValue, hintText, prefixText;
+  final String labelText, hintText, prefixText;
   final IconData icon;
   final bool enableInteractiveSelection;
   final FocusNode? focusNode;
@@ -24,7 +24,7 @@ class RoundedInputField extends StatelessWidget {
     this.focusNode,
     this.enableInteractiveSelection = true,
     this.keyboardType = TextInputType.text,
-    this.initialValue = "",
+    // this.initialValue = "",
     this.inputFormatters,
     required this.validate,
   });
@@ -35,7 +35,7 @@ class RoundedInputField extends StatelessWidget {
       onChanged: onChanged,
       cursorColor: Color(primarycolour),
       controller: controller,
-      initialValue: initialValue,
+      // initialValue: initialValue,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       style: GoogleFonts.poppins(

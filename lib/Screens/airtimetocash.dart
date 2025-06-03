@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dynamic_center/Screens/drawer/main_activity.dart';
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/Screens/paybill.dart';
 import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
 import 'package:dynamic_center/general/component/loadingdialog.dart';
@@ -53,7 +53,7 @@ class _AirtimetocashState extends State<Airtimetocash> {
     if (_formKey.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }

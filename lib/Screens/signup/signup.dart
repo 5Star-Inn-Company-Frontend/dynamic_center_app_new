@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:dynamic_center/Screens/signup/service/signup_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dynamic_center/constant/imports.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class Signup extends StatefulWidget {
@@ -12,28 +14,28 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final logic = Get.find<SignUpLogic>();
+  final state = Get.find<SignUpLogic>().state;
+  
   bool _obscureText = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController firstnameController = TextEditingController();
-  TextEditingController lastnameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController(); // Option 2
+
   String _selectedcompanyid = ""; // Option 2
-  List<Source> _region = [];
+  final List<Source> _region = [];
   Source? _currentUser;
   String dialogtitle = "Signup Error";
   var cmddetails;
 
   @override
   void initState() {
+    Get.put(SignUpService());
     super.initState();
-    getData();
-    _mockCheckForSession().then((status) async {
-      if (status) {
-        loading();
-      }
-    });
+    // getData();
+    // _mockCheckForSession().then((status) async {
+    //   if (status) {
+    //     // // loading();
+    //   }
+    // });
   }
 
   void _toggle() {
@@ -42,69 +44,70 @@ class _SignupState extends State<Signup> {
     });
   }
 
-  Future<bool> _mockCheckForSession() async {
-    await Future.delayed(Duration(milliseconds: 100), () {});
 
-    return true;
-  }
 
-  void getData() async {
-    // loading();
-    try {
-      http.Response response = await http.get(parseUrl("companys"));
-      if (response.statusCode == 200) {
-        String data = response.body;
-        cmddetails = jsonDecode(data);
-        final items = cmddetails["data"].cast<Map<String, dynamic>>();
-        setState(() {
-          _region = items.map<Source>((json) {
-            return Source.fromJson(json);
-          }).toList();
-        });
-        Navigator.of(context).pop();
-      } else {
-        Navigator.of(context).pop();
-        var dialog = CustomAlertDialog(
-          title: dialogtitle,
-          message: "Contact Admin",
-          onPostivePressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  // return JsonApiDropdown();
-                  return Login();
-                },
-              ),
-            );
-          },
-          positiveBtnText: 'Continue',
-          // negativeBtnText: 'No'
-        );
-        showDialog(context: context, builder: (BuildContext context) => dialog);
-      }
-    } on Exception {
-      Navigator.of(context).pop();
-      var dialog = CustomAlertDialog(
-        title: dialogtitle,
-        message: nonetwork,
-        onPostivePressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                // return JsonApiDropdown();
-                return Login();
-              },
-            ),
-          );
-        },
-        positiveBtnText: 'Yes',
-        // negativeBtnText: 'No'
-      );
-      showDialog(context: context, builder: (BuildContext context) => dialog);
-    }
-  }
+  // Future<bool> _mockCheckForSession() async {
+  //   await Future.delayed(Duration(milliseconds: 100), () {});
+  //   return true;
+  // }
+
+  // void getData() async {
+  //   // // loading();
+  //   try {
+  //     http.Response response = await http.get(parseUrl("companys"));
+  //     if (response.statusCode == 200) {
+  //       String data = response.body;
+  //       cmddetails = jsonDecode(data);
+  //       final items = cmddetails["data"].cast<Map<String, dynamic>>();
+  //       setState(() {
+  //         _region = items.map<Source>((json) {
+  //           return Source.fromJson(json);
+  //         }).toList();
+  //       });
+  //       Navigator.of(context).pop();
+  //     } else {
+  //       Navigator.of(context).pop();
+  //       var dialog = CustomAlertDialog(
+  //         title: dialogtitle,
+  //         message: "Contact Admin",
+  //         onPostivePressed: () {
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) {
+  //                 // return JsonApiDropdown();
+  //                 return Login();
+  //               },
+  //             ),
+  //           );
+  //         },
+  //         positiveBtnText: 'Continue',
+  //         // negativeBtnText: 'No'
+  //       );
+  //       showDialog(context: context, builder: (BuildContext context) => dialog);
+  //     }
+  //   } on Exception {
+  //     Navigator.of(context).pop();
+  //     var dialog = CustomAlertDialog(
+  //       title: dialogtitle,
+  //       message: nonetwork,
+  //       onPostivePressed: () {
+  //         Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (context) {
+  //               // return JsonApiDropdown();
+  //               return Login();
+  //             },
+  //           ),
+  //         );
+  //       },
+  //       positiveBtnText: 'Yes',
+  //       // negativeBtnText: 'No'
+  //     );
+  //     showDialog(context: context, builder: (BuildContext context) => dialog);
+  //   }
+  // }
 
   void loading() {
     var dialog = LoadingDialog();
@@ -119,7 +122,7 @@ class _SignupState extends State<Signup> {
     if (_formKey.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }
@@ -135,7 +138,6 @@ class _SignupState extends State<Signup> {
         };
         http.Response response =
             await http.post(parseUrl("signup"), body: jsonBody);
-
         if (response.statusCode == 200) {
           String data = response.body;
           var cmddetails = jsonDecode(data);
@@ -230,8 +232,7 @@ class _SignupState extends State<Signup> {
                     Gap(40.h),
                     Text(
                       "Create Account",
-                      style:
-                          GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 26.sp),
                     ),
                     
                     Gap(20.h),
@@ -268,31 +269,31 @@ class _SignupState extends State<Signup> {
                                 password(),
                                 Gap(25.h),
 
-                                RoundedButton(
-                                  text: "Create Account",
-                                  press: () {
-                                    _login(
-                                        firstnameController.text,
-                                        lastnameController.text,
-                                        emailController.text,
-                                        passwordController.text,
-                                        phoneController.text,
-                                        _selectedcompanyid);
-                                  },
+                                LoadButton(
+                                  label: 'Create Account',
+                                  function: () async {
+                                    final signupService = Get.find<SignUpService>();
+
+                                    SignupModel user = SignupModel(
+                                      firstName: logic.firstNameController.text.trim(),
+                                      lastName: logic.lastNameController.text.trim(),
+                                      phone: logic.phoneController.text.trim(),
+                                      email: logic.emailController.text.trim(),
+                                      password: logic.passwordController.text,
+                                      address: 'null',
+                                      gender: 'null',
+                                      dob: 'null',
+                                    );
+
+                                    await signupService.signup(user, context);
+                                  }
                                 ),
                                 Gap(20.h),
                                 
                                 AlreadyHaveAnAccountCheck(
                                   login: false,
                                   press: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return Login();
-                                        },
-                                      ),
-                                    );
+                                    Get.toNamed(Routes.LOGINVIEW);
                                   },
                                 ),
                                 Gap(20.h),
@@ -337,14 +338,15 @@ class _SignupState extends State<Signup> {
 
   Widget firstname() {
     return RoundedInputField(
+      controller: logic.firstNameController,
       inputFormatters: [
         FilteringTextInputFormatter.deny(RegExp("[ ]")),
       ],
       labelText: "First Name",
       onChanged: (value) {
-        setState(() {
-          firstnameController.text = value;
-        });
+      //   setState(() {
+      //     logic.firstNameController.text = value;
+      //   });
       },
       validate: (value) {
         if (value.isEmpty) {
@@ -359,14 +361,15 @@ class _SignupState extends State<Signup> {
 
   Widget lastname() {
     return RoundedInputField(
+      controller: logic.lastNameController,
       inputFormatters: [
         FilteringTextInputFormatter.deny(RegExp("[ ]")),
       ],
       labelText: "Last Name",
       onChanged: (value) {
-        setState(() {
-          lastnameController.text = value;
-        });
+      //   setState(() {
+      //     logic.lastNameController.text = value;
+      //   });
       },
       validate: (value) {
         if (value.isEmpty) {
@@ -381,14 +384,16 @@ class _SignupState extends State<Signup> {
 
   Widget phoneno() {
     return RoundedInputField(
+      controller: logic.phoneController,
+      keyboardType: TextInputType.phone,
       inputFormatters: [
         FilteringTextInputFormatter.deny(RegExp("[ ]")),
       ],
       labelText: "Phone number",
       onChanged: (value) {
-        setState(() {
-          phoneController.text = value;
-        });
+      //   setState(() {
+      //     logic.phoneController.text = value;
+      //   });
       },
       validate: (value) {
         if (value.isEmpty) {
@@ -405,14 +410,16 @@ class _SignupState extends State<Signup> {
 
   Widget email() {
     return RoundedInputField(
+      controller: logic.emailController,
+      keyboardType: TextInputType.emailAddress,
       inputFormatters: [
         FilteringTextInputFormatter.deny(RegExp("[ ]")),
       ],
       labelText: "Email Address",
       onChanged: (value) {
-        setState(() {
-          emailController.text = value;
-        });
+      //   setState(() {
+      //     logic.emailController.text = value;
+      //   });
       },
       validate: (value) {
         if (value.isEmpty) {
@@ -427,10 +434,11 @@ class _SignupState extends State<Signup> {
 
   Widget password() {
     return RoundedPasswordField(
+      controller: logic.passwordController,
       onChanged: (value) {
-        setState(() {
-          passwordController.text = value;
-        });
+      //   setState(() {
+      //     logic.passwordController.text = value;
+      //   });
       },
       press: () {
         _toggle();

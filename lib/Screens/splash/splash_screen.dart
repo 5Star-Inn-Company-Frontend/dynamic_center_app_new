@@ -68,27 +68,27 @@ class _SplashScreenState extends State<SplashScreen> {
         // }
       });
 
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        RemoteNotification? notification = message.notification;
-        AndroidNotification? android = message.notification?.android;
+      // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      //   RemoteNotification? notification = message.notification;
+      //   AndroidNotification? android = message.notification?.android;
 
-        if (notification != null && android != null) {
-          flutterLocalNotificationsPlugin.show(
-              notification.hashCode,
-              notification.title,
-              notification.body,
-              NotificationDetails(
-                android: AndroidNotificationDetails(
-                  channel.id,
-                  channel.name,
-                  // channel.description,
-                  // add a proper drawable resource to android, for now using
-                  //      one that already exists in example app.
-                  icon: 'launch_background',
-                ),
-              ));
-        }
-      });
+      //   if (notification != null && android != null) {
+      //     flutterLocalNotificationsPlugin.show(
+      //         notification.hashCode,
+      //         notification.title,
+      //         notification.body,
+      //         NotificationDetails(
+      //           android: AndroidNotificationDetails(
+      //             channel.id,
+      //             channel.name,
+      //             // channel.description,
+      //             // add a proper drawable resource to android, for now using
+      //             //      one that already exists in example app.
+      //             icon: 'launch_background',
+      //           ),
+      //         ));
+      //   }
+      // });
 
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         log('A new onMessageOpenedApp event was published!');

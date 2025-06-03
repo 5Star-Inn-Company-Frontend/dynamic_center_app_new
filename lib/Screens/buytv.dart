@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dynamic_center/Screens/drawer/main_activity.dart';
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/Screens/paybill.dart';
 import 'package:dynamic_center/general/component/confirm_dialog.dart';
 import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
@@ -38,7 +38,7 @@ class _BuytvState extends State<Buytv> {
 
   void getData() async {
     try {
-      loading();
+      // loading();
       http.Response response =
           await http.get(parseUrl("tvconfig/${_selectedLocation}"), headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -111,7 +111,7 @@ class _BuytvState extends State<Buytv> {
     if (_formdata.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }
@@ -189,7 +189,7 @@ class _BuytvState extends State<Buytv> {
     if (_formdata.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/general/component/Snacbar.dart';
 import 'package:dynamic_center/general/component/custom_alert_dialog.dart';
 import 'package:dynamic_center/general/component/device.dart';
@@ -86,7 +86,7 @@ class _DepositState extends State<Deposit> {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
 
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }

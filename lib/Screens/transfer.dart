@@ -3,7 +3,7 @@ import 'dart:io';
 
 // import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:dynamic_center/Screens/drawer/main_activity.dart';
-import 'package:dynamic_center/Screens/landing_page.dart';
+import 'package:dynamic_center/Screens/home/landing_page.dart';
 import 'package:dynamic_center/Screens/paybill.dart';
 import 'package:dynamic_center/general/component/Snacbar.dart';
 import 'package:dynamic_center/general/component/confirm_dialog.dart';
@@ -49,7 +49,7 @@ class _TransferState extends State<Transfer> {
 
   void getData() async {
     try {
-      loading();
+      // loading();
       http.Response response =
           await http.get(parseUrl("banktransferconfig"), headers: {
         HttpHeaders.contentTypeHeader: "application/json",
@@ -122,7 +122,7 @@ class _TransferState extends State<Transfer> {
     if (_formKey3.currentState!.validate()) {
       // If the form is valid, display a snackbar. In the real world,
       // you'd often call a server or save the information in a database.
-      loading();
+      // loading();
       // if(token != null){
       //   headers.addAll({"Authorization" : "Bearer "+token});
       // }

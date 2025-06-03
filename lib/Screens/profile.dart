@@ -383,7 +383,7 @@ class _ProfileState extends State<Profile> {
     // If the form is valid, display a snackbar. In the real world,
     // you'd often call a server or save the information in a database.
 
-    loading();
+    // loading();
     // if(token != null){
     //   headers.addAll({"Authorization" : "Bearer "+token});
     // }

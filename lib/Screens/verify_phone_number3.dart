@@ -179,7 +179,7 @@ class _VerifyPhoneNumber3State extends State<VerifyPhoneNumber3> {
 
 // Example code of how to sign in with phone.
   void _signInWithPhoneNumber() async {
-    loading();
+    // loading();
     try {
       final AuthCredential credential = PhoneAuthProvider.credential(
         verificationId: _verificationId,
